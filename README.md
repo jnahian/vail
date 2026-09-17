@@ -132,3 +132,11 @@ content.js      picker, panel, editor, rule engine, sensitive data detection
 popup.html/css/js  rule manager
 icons/          16, 32, 48, 128 px
 ```
+
+## Contributing
+
+Read the [contributing guide](CONTRIBUTING.md) and the [code of conduct](CODE_OF_CONDUCT.md). To report a security problem, follow the [security policy](SECURITY.md).
+
+## License
+
+Veil is released under the [MIT License](LICENSE).
