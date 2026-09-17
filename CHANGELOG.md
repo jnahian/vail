@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-09-17
+
+### Changed
+
+- The release zip now holds only the extension files. It no longer includes the repository documentation, such as `README.md` and `CHANGELOG.md`.
+
 ## [1.0.1] - 2026-09-17
 
 ### Changed
@@ -36,6 +42,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Pausing Veil now also stops sensitive data hiding.
 - After a Veil reload, popup controls now keep working in tabs that were already open.
 
-[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/jnahian/vail/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/jnahian/vail/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/jnahian/vail/releases/tag/v1.0.0
