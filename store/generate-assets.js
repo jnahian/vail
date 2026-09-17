@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('@playwright/test');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '../extension');
 const OUT = path.join(__dirname, 'assets');
 const HOST = 'veil.test';
 const PAGE = `http://${HOST}/dashboard.html`;

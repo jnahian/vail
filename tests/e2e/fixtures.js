@@ -4,7 +4,7 @@ const path = require('node:path');
 const { spawn } = require('node:child_process');
 const { test: base, expect, chromium } = require('@playwright/test');
 
-const EXTENSION = path.resolve(__dirname, '../..');
+const EXTENSION = path.resolve(__dirname, '../../extension');
 const PAGES = path.join(__dirname, 'pages');
 const HOST = 'veil.test';
 

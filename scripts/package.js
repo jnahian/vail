@@ -1,8 +1,8 @@
 // Builds dist/veil-<version>.zip for the Chrome Web Store from the last commit.
-// The zip has manifest.json at its root. .gitattributes keeps dev files out.
+// The zip holds the extension/ folder, with manifest.json at its root.
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
-const manifest = require('../manifest.json');
+const manifest = require('../extension/manifest.json');
 const pkg = require('../package.json');
 
 const problems = [];
@@ -17,5 +17,5 @@ if (problems.length) {
 
 fs.mkdirSync('dist', { recursive: true });
 const out = `dist/veil-${manifest.version}.zip`;
-execFileSync('git', ['archive', '--format=zip', '-o', out, 'HEAD']);
+execFileSync('git', ['archive', '--format=zip', '-o', out, 'HEAD:extension']);
 console.log(`Wrote ${out}`);

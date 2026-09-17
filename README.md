@@ -131,12 +131,13 @@ You can change shortcuts at `chrome://extensions/shortcuts`.
 ## Files
 
 ```
-manifest.json   MV3 manifest, permissions, shortcuts
-background.js   context menu, shortcuts, toolbar badge
-detect.js       sensitive data detection (pure text matching)
-content.js      picker, panel, editor, rule engine, sensitive data hiding
-popup.html/css/js  rule manager
-icons/          16, 32, 48, 128 px
+extension/        the extension, loaded unpacked and zipped for the store
+  manifest.json   MV3 manifest, permissions, shortcuts
+  background.js   context menu, shortcuts, toolbar badge
+  detect.js       sensitive data detection (pure text matching)
+  content.js      picker, panel, editor, rule engine, sensitive data hiding
+  popup.html/css/js  rule manager
+  icons/          16, 32, 48, 128 px
 tests/unit/     detection tests (node:test)
 tests/e2e/      extension tests in Chromium (Playwright)
 site/           landing page (Astro and Tailwind CSS)
