@@ -27,6 +27,10 @@
     "activeTab",
     "contextMenus"
   ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
   "content_scripts": [
     {
       "matches": [
@@ -34,6 +38,7 @@
         "https://*/*"
       ],
       "js": [
+        "detect.js",
         "content.js"
       ],
       "run_at": "document_start"
