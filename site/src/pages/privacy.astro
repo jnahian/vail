@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import icon from '../../../extension/icons/icon128.png';
+import { Content } from '../../../PRIVACY.md';
+
+const REPO = 'https://github.com/jnahian/vail';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Privacy policy: Veil"
+  description="Veil saves your rules on your device, makes no network requests, and does not send or sell any data."
+>
+  <header class="border-b border-line">
+    <nav class="mx-auto flex max-w-3xl items-center gap-8 px-4 py-3 sm:px-6">
+      <a href={`${base}/`} class="flex min-h-11 items-center gap-2.5 text-lg font-bold">
+        <Image src={icon} alt="" width={30} height={30} densities={[1, 2, 3]} loading="eager" class="rounded-md" />
+        Veil
+      </a>
+      <a href={`${base}/`} class="ml-auto py-3 text-slate-ink hover:text-ink">Back to the home page</a>
+    </nav>
+  </header>
+
+  <main class="policy mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
+    <Content />
+  </main>
+
+  <footer class="border-t border-line">
+    <div class="mx-auto flex max-w-3xl flex-wrap gap-x-7 px-4 py-6 text-[15px] text-slate-ink sm:px-6">
+      <span class="py-3">MIT License</span>
+      <a href={`${REPO}/blob/main/PRIVACY.md`} class="py-3 hover:text-ink">Policy history on GitHub</a>
+      <a href={`${REPO}/issues`} class="py-3 hover:text-ink">Support</a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .policy :global(h1) {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .policy :global(h2) {
+    margin-top: 2.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .policy :global(p),
+  .policy :global(ul) {
+    margin-top: 1rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-slate-ink);
+  }
+  .policy :global(h1 + p) {
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+  }
+  .policy :global(ul) {
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+  .policy :global(li + li) {
+    margin-top: 0.5rem;
+  }
+  .policy :global(a) {
+    color: var(--color-brand);
+    text-decoration: underline;
+  }
+  .policy :global(a:hover) {
+    color: var(--color-brand-deep);
+  }
+  .policy :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--color-ink);
+  }
+</style>

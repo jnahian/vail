@@ -1,20 +1,68 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #1e2340;
-  --color-slate-ink: #6a7190;
-  --color-vellum: #eef1f6;
+  --color-ink: #161b33;
+  --color-ink-line: #343b63;
+  --color-slate-ink: #535a78;
+  --color-paper: #f4f6f9;
+  --color-line: #dde2eb;
+  --color-mask: #8c93ab;
   --color-brand: #0f766e;
   --color-brand-deep: #115e59;
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --color-brand-light: #7dd8cc;
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  white-space: nowrap;
+  padding: 1px 6px;
+  border: 1px solid #c9cfdc;
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* Hero demo: the checked radio sets how every .v value looks, like Veil's style setting. */
+.demo .v {
+  display: inline-block;
+  border-radius: 4px;
+  transition:
+    filter 200ms ease-out,
+    background-color 200ms ease-out,
+    color 200ms ease-out;
+}
+.demo:has(input[value="mask"]:checked) .v {
+  background: var(--color-mask);
+  color: transparent;
+}
+.demo:has(input[value="hide"]:checked) .v {
+  color: transparent;
+}
+.demo:has(input[value="blur"]:checked) .v:not(:hover) {
+  filter: blur(6px);
+}
+.demo [data-caption] {
+  display: none;
+}
+.demo:has(input[value="off"]:checked) [data-caption="off"],
+.demo:has(input[value="mask"]:checked) [data-caption="mask"],
+.demo:has(input[value="hide"]:checked) [data-caption="hide"],
+.demo:has(input[value="blur"]:checked) [data-caption="blur"] {
+  display: block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .demo .v {
+    transition: none;
   }
 }
