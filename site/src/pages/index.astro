@@ -1,0 +1,282 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import icon from '../../../icons/icon128.png';
+import shotMask from '../../../store/assets/screenshot-1-mask.png';
+import shotBlur from '../../../store/assets/screenshot-2-blur.png';
+import shotPanel from '../../../store/assets/screenshot-4-panel.png';
+import shotRules from '../../../store/assets/screenshot-5-rules.png';
+
+const REPO = 'https://github.com/jnahian/vail';
+const DOWNLOAD = `${REPO}/releases/latest`;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const types = [
+  { name: 'Money', example: '$48,210.75' },
+  { name: 'Emails', example: 'maya@lumenbooks.example' },
+  { name: 'Phone numbers', example: '+880 1712-345678' },
+  { name: 'Card numbers', example: '4242 4242 4242 4242' },
+  { name: 'IBANs', example: 'DE89 3704 0044 0532 0130 00' },
+  { name: 'API keys and tokens', example: 'sk_live_•••••••••' },
+  { name: 'IP addresses', example: '203.0.113.42' },
+  { name: 'Your own words', example: 'Project Falcon' },
+];
+
+const features = [
+  {
+    title: 'Hide sensitive data on a whole site',
+    body: 'Turn it on once for a site. Veil covers every match on its pages, also content that loads later, and skips near misses such as dates and version numbers.',
+    image: shotBlur,
+    alt: 'A dashboard with blurred amounts, emails and phone numbers, and the Veil popup with Blur selected',
+  },
+  {
+    title: 'Hide, blur or rewrite any element',
+    body: 'Pick an element, or right-click it. Blur it with a live preview, hide it with or without its space, or type new text directly on the page.',
+    image: shotPanel,
+    alt: 'The Veil panel next to a selected avatar, with the Blur strength slider open',
+  },
+  {
+    title: 'Your changes come back on every visit',
+    body: 'Apply a change to one page or to the whole site. Veil applies it again when the page loads, also on single-page apps. Turn rules on and off from the popup.',
+    image: shotRules,
+    alt: 'The Veil popup listing three rules for the current page',
+  },
+];
+
+const shortcuts = [
+  { keys: ['Alt', 'Shift', 'V'], action: 'Pick an element' },
+  { keys: ['Alt', 'Shift', 'X'], action: 'Pause or resume all changes' },
+  { keys: ['Alt', 'Shift', 'M'], action: 'Show hidden data for a moment' },
+];
+
+const rows = [
+  { label: 'Revenue', value: '$48,210.75' },
+  { label: 'Customer', value: 'arjun.mehta@mailbox.example' },
+  { label: 'Phone', value: '+91 98765 43210' },
+  { label: 'API token', value: 'sk_live_51Hx9Demo' },
+];
+---
+
+<Layout
+  title="Veil: hide private data before you share your screen"
+  description="A Chrome extension that masks money, emails, phone numbers, API keys and other sensitive data, and hides, blurs or rewrites any element on a page."
+>
+  <header class="sticky top-0 z-10 border-b border-slate-200/70 bg-white/85 backdrop-blur">
+    <nav class="mx-auto flex max-w-6xl items-center gap-6 px-4 py-3 sm:px-6">
+      <a href={`${base}/`} class="flex items-center gap-2 font-bold">
+        <Image src={icon} alt="" width={28} height={28} class="rounded-md" />
+        Veil
+      </a>
+      <div class="ml-auto hidden items-center gap-6 text-sm text-slate-ink sm:flex">
+        <a href="#features" class="hover:text-ink">Features</a>
+        <a href="#privacy" class="hover:text-ink">Privacy</a>
+        <a href="#install" class="hover:text-ink">Install</a>
+        <a href={REPO} class="hover:text-ink">GitHub</a>
+      </div>
+      <a
+        href={DOWNLOAD}
+        class="ml-auto rounded-lg bg-brand px-3.5 py-2 text-sm font-semibold text-white hover:bg-brand-deep sm:ml-0"
+      >
+        Get Veil
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="mx-auto grid max-w-6xl items-center gap-12 px-4 pt-16 pb-20 sm:px-6 lg:grid-cols-2 lg:pt-24">
+      <div>
+        <p class="mb-4 inline-flex rounded-full bg-teal-50 px-3 py-1 text-sm font-medium text-brand-deep">
+          Free Chrome extension · Open source
+        </p>
+        <h1 class="text-4xl font-bold tracking-tight text-balance sm:text-5xl">
+          Hide private data before you share your screen
+        </h1>
+        <p class="mt-5 max-w-xl text-lg text-slate-ink text-pretty">
+          Veil masks money, emails, phone numbers, card numbers and API keys on any site. It also hides, blurs or
+          rewrites any element that you pick. Your changes stay in your browser.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={DOWNLOAD} class="rounded-xl bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-deep">
+            Download for Chrome
+          </a>
+          <a href={REPO} class="rounded-xl border border-slate-300 px-5 py-3 font-semibold hover:border-ink">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <label class="group block cursor-pointer rounded-2xl border border-slate-200 bg-vellum p-5 sm:p-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-semibold">Try it: hide sensitive data</span>
+          <input type="checkbox" checked class="peer sr-only" aria-label="Hide sensitive data" />
+          <span
+            aria-hidden="true"
+            class="relative h-6 w-11 rounded-full bg-slate-300 transition-colors peer-checked:bg-brand after:absolute after:top-0.5 after:left-0.5 after:size-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:after:translate-x-5 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand motion-reduce:transition-none motion-reduce:after:transition-none"
+          ></span>
+        </div>
+        <div class="mt-4 divide-y divide-slate-200 rounded-xl bg-white px-4 shadow-sm">
+          {
+            rows.map((row) => (
+              <div class="flex items-center justify-between gap-4 py-3 text-sm">
+                <span class="text-slate-ink">{row.label}</span>
+                <span class="rounded-sm px-1 font-medium transition-colors group-has-checked:bg-slate-400 group-has-checked:text-transparent motion-reduce:transition-none">
+                  {row.value}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+        <p class="mt-3 text-xs text-slate-ink">Click anywhere on this card to switch.</p>
+      </label>
+    </section>
+
+    <section class="bg-vellum py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <Image
+          src={shotMask}
+          alt="A store dashboard where Veil masks every amount, email, phone number, IBAN, card number, IP address and API token, with the Veil popup open"
+          class="w-full rounded-2xl border border-slate-200 shadow-xl"
+          widths={[640, 1280]}
+          sizes="(min-width: 1152px) 1104px, 100vw"
+          loading="eager"
+        />
+      </div>
+    </section>
+
+    <section id="features" class="mx-auto max-w-6xl scroll-mt-20 space-y-20 px-4 py-20 sm:px-6">
+      {
+        features.map((f, i) => (
+          <div class="grid items-center gap-10 lg:grid-cols-5">
+            <div class:list={['lg:col-span-2', i % 2 === 1 && 'lg:order-last']}>
+              <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">{f.title}</h2>
+              <p class="mt-4 text-lg text-slate-ink text-pretty">{f.body}</p>
+            </div>
+            <Image
+              src={f.image}
+              alt={f.alt}
+              class="w-full rounded-xl border border-slate-200 shadow-lg lg:col-span-3"
+              widths={[640, 1280]}
+              sizes="(min-width: 1024px) 660px, 100vw"
+            />
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="border-y border-slate-200 bg-vellum py-20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">What Veil can find</h2>
+        <p class="mt-3 max-w-2xl text-slate-ink">
+          Select the types for each site. Card numbers and IBANs must pass their checksums, so random numbers stay
+          visible.
+        </p>
+        <ul class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {
+            types.map((t) => (
+              <li class="rounded-xl border border-slate-200 bg-white p-4">
+                <p class="font-semibold">{t.name}</p>
+                <p class="mt-1 truncate font-mono text-sm text-slate-ink">{t.example}</p>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6 text-sm text-slate-ink">
+          Three styles: Mask covers matches with a bar, Blur shows them on hover, and Hide keeps their space empty.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">Keyboard shortcuts</h2>
+        <p class="mt-3 text-slate-ink">
+          Change them at <code class="font-mono text-sm">chrome://extensions/shortcuts</code>.
+        </p>
+      </div>
+      <ul class="divide-y divide-slate-200 rounded-xl border border-slate-200">
+        {
+          shortcuts.map((s) => (
+            <li class="flex items-center justify-between gap-4 px-4 py-3">
+              <span>{s.action}</span>
+              <span class="flex gap-1">
+                {s.keys.map((k) => (
+                  <kbd class="rounded-md border border-slate-300 bg-vellum px-2 py-0.5 font-mono text-xs">{k}</kbd>
+                ))}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section id="privacy" class="scroll-mt-20 bg-ink py-20 text-white">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">Private by design</h2>
+        <div class="mt-8 grid gap-6 sm:grid-cols-3">
+          <div>
+            <p class="font-semibold text-teal-300">No network requests</p>
+            <p class="mt-2 text-slate-300">Veil has no analytics, no tracking and no remote code.</p>
+          </div>
+          <div>
+            <p class="font-semibold text-teal-300">Stays in your browser</p>
+            <p class="mt-2 text-slate-300">Your rules are saved on your device. Export them to a file when you want.</p>
+          </div>
+          <div>
+            <p class="font-semibold text-teal-300">Open source</p>
+            <p class="mt-2 text-slate-300">Read every line on GitHub. Veil is released under the MIT License.</p>
+          </div>
+        </div>
+        <p class="mt-10 max-w-3xl text-sm text-slate-400">
+          Veil hides data visually only. The page's own scripts can still read it, and Veil cannot hide data inside
+          iframes, canvas charts or images. Read the{' '}
+          <a href={`${REPO}/blob/main/PRIVACY.md`} class="underline hover:text-white">privacy policy</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="install" class="mx-auto max-w-6xl scroll-mt-20 px-4 py-20 sm:px-6">
+      <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">Install Veil</h2>
+      <ol class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <li class="rounded-xl border border-slate-200 p-5">
+          <p class="text-sm font-semibold text-brand">Step 1</p>
+          <p class="mt-2">
+            Download the zip from the <a href={DOWNLOAD} class="font-semibold underline">latest release</a>, and unzip
+            it into a folder that you keep.
+          </p>
+        </li>
+        <li class="rounded-xl border border-slate-200 p-5">
+          <p class="text-sm font-semibold text-brand">Step 2</p>
+          <p class="mt-2">
+            Open <code class="font-mono text-sm">chrome://extensions</code> and turn on Developer mode.
+          </p>
+        </li>
+        <li class="rounded-xl border border-slate-200 p-5">
+          <p class="text-sm font-semibold text-brand">Step 3</p>
+          <p class="mt-2">Click Load unpacked, and select the folder that contains <code class="font-mono text-sm">manifest.json</code>.</p>
+        </li>
+        <li class="rounded-xl border border-slate-200 p-5">
+          <p class="text-sm font-semibold text-brand">Step 4</p>
+          <p class="mt-2">Pin Veil from the puzzle-piece menu, open a site, and click Pick an element.</p>
+        </li>
+      </ol>
+      <div class="mt-10">
+        <a href={DOWNLOAD} class="rounded-xl bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-deep">
+          Download for Chrome
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-8 text-sm text-slate-ink sm:px-6">
+      <span class="flex items-center gap-2 font-semibold text-ink">
+        <Image src={icon} alt="" width={20} height={20} class="rounded" />
+        Veil
+      </span>
+      <span>MIT License</span>
+      <a href={`${REPO}/blob/main/PRIVACY.md`} class="hover:text-ink">Privacy policy</a>
+      <a href={`${REPO}/blob/main/CHANGELOG.md`} class="hover:text-ink">Changelog</a>
+      <a href={`${REPO}/issues`} class="hover:text-ink">Support</a>
+    </div>
+  </footer>
+</Layout>
