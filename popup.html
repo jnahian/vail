@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Veil</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="" width="36" height="36">
+    <div class="brand">
+      <h1>Veil</h1>
+      <p id="host"></p>
+    </div>
+    <label class="switch" id="switchLabel" title="Turn all Veil changes on or off">
+      <input type="checkbox" id="active" role="switch">
+      <span class="track" aria-hidden="true"></span>
+      <span class="state" id="stateText">On</span>
+    </label>
+  </header>
+
+  <main id="main">
+    <button id="pick" class="pick" type="button">
+      <span>Pick an element</span>
+      <kbd id="kbd"></kbd>
+    </button>
+    <section class="money" id="money">
+      <div class="money-head">
+        <div>
+          <h2 class="money-title" id="moneyLabel">Hide money on this site</h2>
+          <p class="money-sub">Prices, totals and balances shown with a currency</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="moneyOn" role="switch" aria-labelledby="moneyLabel">
+          <span class="track" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div id="moneyOpts" class="money-opts" hidden>
+        <div class="seg" role="group" aria-label="How amounts look">
+          <button type="button" data-style="mask">Mask</button>
+          <button type="button" data-style="blur">Blur</button>
+          <button type="button" data-style="hide">Hide</button>
+        </div>
+        <p class="note" id="styleNote"></p>
+        <label class="check">
+          <input type="checkbox" id="moneyBare">
+          <span>Also catch plain numbers next to words like Total or Balance</span>
+        </label>
+        <div class="excl" id="exclRow" hidden>
+          <span id="exclText"></span>
+          <button type="button" id="exclReset">Reset</button>
+        </div>
+        <p class="note" id="revealNote"></p>
+      </div>
+    </section>
+    <div id="lists"></div>
+    <div id="empty" class="empty" hidden>
+      <p class="empty-title">Nothing veiled on this site yet</p>
+      <p>Pick an element, or right-click anything on the page and choose <em>Veil this element</em>.</p>
+    </div>
+  </main>
+
+  <div id="unsupported" class="empty" hidden>
+    <p class="empty-title">Veil can't run here</p>
+    <p>Chrome blocks extensions on browser pages and the Web Store. Open a regular website to use Veil.</p>
+  </div>
+
+  <footer id="footer">
+    <button type="button" id="export">Export</button>
+    <button type="button" id="import">Import</button>
+    <input type="file" id="file" accept="application/json" hidden>
+    <span class="grow"></span>
+    <button type="button" id="clear" class="danger">Clear this site</button>
+  </footer>
+
+  <div id="toast" role="status" hidden></div>
+  <script src="popup.js"></script>
+</body>
+</html>

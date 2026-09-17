@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Veil: Hide, Blur & Rewrite",
+  "short_name": "Veil",
+  "version": "1.1.0",
+  "description": "Pick any element on a page to hide it, blur it, or replace its text, or hide every amount of money at once. Your changes come back on every visit.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Veil",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "contextMenus"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "start-picker": {
+      "suggested_key": {
+        "default": "Alt+Shift+V"
+      },
+      "description": "Pick an element to veil"
+    },
+    "toggle-pause": {
+      "suggested_key": {
+        "default": "Alt+Shift+X"
+      },
+      "description": "Pause or resume all Veil changes"
+    },
+    "toggle-money-reveal": {
+      "suggested_key": {
+        "default": "Alt+Shift+M"
+      },
+      "description": "Show or hide amounts on the current tab"
+    }
+  }
+}
