@@ -6,7 +6,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- Shorter extension description, because the Chrome Web Store allows at most 132 characters.
+
 ### Fixed
+
+- API keys and tokens inside code elements are now hidden.
 
 - After an install, update or reload, Veil now really starts again in open tabs. The 1.0.0 release did not have the host permissions that this needs.
 
