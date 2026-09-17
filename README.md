@@ -1,5 +1,7 @@
 # Veil: Hide, Blur & Rewrite
 
+Website: <https://jnahian.github.io/vail/>
+
 A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 
 ## Install
@@ -137,6 +139,7 @@ popup.html/css/js  rule manager
 icons/          16, 32, 48, 128 px
 tests/unit/     detection tests (node:test)
 tests/e2e/      extension tests in Chromium (Playwright)
+site/           landing page (Astro and Tailwind CSS)
 ```
 
 To run the tests, use `npm install`, then `npx playwright install chromium`, then `npm test`.
