@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-09-17
+
 ### Changed
 
 - New deep teal brand color (`#0F766E`) for the icon, popup, on-page panel and picker.
@@ -14,7 +16,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 ### Fixed
 
 - API keys and tokens inside code elements are now hidden.
-
 - After an install, update or reload, Veil now really starts again in open tabs. The 1.0.0 release did not have the host permissions that this needs.
 
 ## [1.0.0] - 2026-09-17
@@ -35,5 +36,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Pausing Veil now also stops sensitive data hiding.
 - After a Veil reload, popup controls now keep working in tabs that were already open.
 
-[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/jnahian/vail/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/jnahian/vail/releases/tag/v1.0.0
