@@ -91,9 +91,9 @@ const primary =
         <a href="#pick" class="hover:text-ink">Element picker</a>
         <a href="#privacy" class="hover:text-ink">Privacy</a>
         <a href="#install" class="hover:text-ink">Install</a>
-        <a href={REPO} class="hover:text-ink">GitHub</a>
+        <a href={REPO} target="_blank" rel="noopener" class="hover:text-ink">GitHub</a>
       </div>
-      <a href={DOWNLOAD} class:list={[primary, 'ml-auto px-4 py-2 text-[15px] md:ml-0']}>
+      <a href={DOWNLOAD} target="_blank" rel="noopener" class:list={[primary, 'ml-auto px-4 py-2 text-[15px] md:ml-0']}>
         <span class="sm:hidden">Download</span><span class="hidden sm:inline">Download for Chrome</span>
       </a>
     </nav>
@@ -113,9 +113,9 @@ const primary =
             else sees them. Try it on the page below.
           </p>
           <div class="flex flex-col gap-3 sm:flex-row">
-            <a href={DOWNLOAD} class={primary}>Download for Chrome</a>
+            <a href={DOWNLOAD} target="_blank" rel="noopener" class={primary}>Download for Chrome</a>
             <a
-              href={REPO}
+              href={REPO} target="_blank" rel="noopener"
               class="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#c9cfdc] px-5 py-3 font-semibold transition-colors hover:border-ink motion-reduce:transition-none"
             >
               View the source
@@ -361,7 +361,7 @@ const primary =
                 {i === 0 ? (
                   <>
                     Download the zip from the{' '}
-                    <a href={DOWNLOAD} class="font-semibold text-brand underline hover:text-brand-deep">
+                    <a href={DOWNLOAD} target="_blank" rel="noopener" class="font-semibold text-brand underline hover:text-brand-deep">
                       latest release
                     </a>
                     , and unzip it into a folder that you keep.
@@ -375,7 +375,7 @@ const primary =
         }
       </ol>
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
-        <a href={DOWNLOAD} class={primary}>Download for Chrome</a>
+        <a href={DOWNLOAD} target="_blank" rel="noopener" class={primary}>Download for Chrome</a>
         <span class="text-[15px] text-slate-ink">
           To update, unzip the new release into the same folder and click reload on the Veil card.
         </span>
@@ -391,8 +391,8 @@ const primary =
       </span>
       <span class="py-3">MIT License</span>
       <a href={`${base}/privacy/`} class="py-3 hover:text-ink">Privacy policy</a>
-      <a href={`${REPO}/blob/main/CHANGELOG.md`} class="py-3 hover:text-ink">Changelog</a>
-      <a href={`${REPO}/issues`} class="py-3 hover:text-ink">Support</a>
+      <a href={`${base}/changelog/`} class="py-3 hover:text-ink">Changelog</a>
+      <a href={`${REPO}/issues`} target="_blank" rel="noopener" class="py-3 hover:text-ink">Support</a>
     </div>
   </footer>
 </Layout>
