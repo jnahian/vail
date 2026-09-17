@@ -87,6 +87,7 @@ const primary =
         Veil
       </a>
       <div class="ml-auto hidden items-center gap-7 text-slate-ink md:flex">
+        <a href="#demo" class="hover:text-ink">Demo</a>
         <a href="#finds" class="hover:text-ink">What it hides</a>
         <a href="#pick" class="hover:text-ink">Element picker</a>
         <a href="#privacy" class="hover:text-ink">Privacy</a>
@@ -221,6 +222,28 @@ const primary =
             ))
           }
         </div>
+      </div>
+    </section>
+
+    <section
+      id="demo"
+      class="mx-auto flex max-w-5xl scroll-mt-20 flex-col gap-6 px-4 pt-24 sm:px-6 lg:px-8 lg:pt-36"
+    >
+      <div class="flex flex-col gap-5">
+        <h2 class={h2}>Watch Veil in action.</h2>
+        <p class:list={[lead, 'max-w-2xl']}>
+          A short walkthrough of hiding sensitive data on a site, picking an element, and managing your rules.
+        </p>
+      </div>
+      <div class="aspect-video w-full overflow-hidden rounded-2xl border border-line bg-ink">
+        <iframe
+          class="h-full w-full"
+          src="https://www.youtube-nocookie.com/embed/-tR-An6twFQ"
+          title="Stop leaking data on screen shares - Veil for Chrome (demo)"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </div>
     </section>
 

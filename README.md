@@ -2,9 +2,13 @@
 
 Website: <https://vail.jnahian.me/>
 
+Demo: <https://youtu.be/-tR-An6twFQ>
+
 A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 
 ## Install
+
+The demo video says that Veil is free on the Chrome Web Store. The listing is still in review, so it has no public page yet. Until it is live, install Veil from the release zip:
 
 1. Download `veil-<version>.zip` from the [latest release](https://github.com/jnahian/vail/releases/latest).
 2. Unzip it into a folder that you keep, for example `veil`. Chrome loads Veil from this folder, so do not delete or move it.
