@@ -128,10 +128,15 @@ You can change shortcuts at `chrome://extensions/shortcuts`.
 ```
 manifest.json   MV3 manifest, permissions, shortcuts
 background.js   context menu, shortcuts, toolbar badge
-content.js      picker, panel, editor, rule engine, sensitive data detection
+detect.js       sensitive data detection (pure text matching)
+content.js      picker, panel, editor, rule engine, sensitive data hiding
 popup.html/css/js  rule manager
 icons/          16, 32, 48, 128 px
+tests/unit/     detection tests (node:test)
+tests/e2e/      extension tests in Chromium (Playwright)
 ```
+
+To run the tests, use `npm install`, then `npx playwright install chromium`, then `npm test`.
 
 ## Contributing
 

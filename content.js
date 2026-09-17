@@ -854,110 +854,21 @@
   let moneyObserver = null;
   let moneyHL = null;
   let skipSel = '';
-  let hintRE = null;   // cheap test for text that can contain a match
-  let customRE = null;
+  let matcher = VeilDetect.compile(); // built from the configuration in startMoney
   const HAS_HL = typeof Highlight === 'function' && typeof CSS !== 'undefined' && !!CSS.highlights;
   const nodeRanges = new Map(); // Text node or Element -> Range[]
   const moneyEls = new Set();   // elements and inputs carrying data-veil-money
   const MATTR = 'data-veil-money';
 
-  const SYM = '(?:[A-Z]{1,2}\\$|[$€£¥₹৳₽₩₺₫₱₪₦₴฿₡₲₵₸₭₮¢﷼]|(?<![A-Za-z])(?:Rs|Tk|RM)\\.?(?![A-Za-z]))';
-  const CODE = '(?<![A-Za-z])(?:USD|EUR|GBP|BDT|INR|JPY|CNY|RMB|AUD|CAD|SGD|HKD|NZD|AED|SAR|QAR|KWD|CHF|SEK|NOK|DKK|PLN|CZK|HUF|PKR|LKR|NPR|MYR|IDR|THB|PHP|VND|KRW|TWD|ZAR|BRL|MXN|ARS|CLP|COP|RUB|UAH|TRY|EGP|NGN|KES|ILS)(?![A-Za-z])';
-  const NUM = "\\d{1,2}(?:,\\d{2})+,\\d{3}(?:\\.\\d{1,2})?|\\d{1,3}(?:[,.\\u00a0\\u202f']\\d{3})+(?:[.,]\\d{1,2})?|\\d+(?:[.,]\\d{1,2})?";
-  const SUF = '(?:\\s?(?:[kKmMbB]n?|million|billion|thousand|lakh|crore)(?![A-Za-z]))?';
-  const PRE = `[-−]?(?:${SYM}|${CODE})\\s?[-−]?(?:${NUM})${SUF}`;
-  const POST = `[-−]?(?:${NUM})${SUF}\\s?(?:${SYM}|${CODE})`;
-  const MONEY_RE = new RegExp(`${PRE}|${POST}`, 'gu');
-  const FULL_RE = new RegExp(`^(?:${PRE}|${POST})$`, 'u');
-  const PART_RE = new RegExp(`^(?:${SYM}|${CODE}|[-−]?(?:${NUM})${SUF})$`, 'u');
-  const MONEY_WORDS = /(?<![A-Za-z])(?:total|sub-?total|grand total|price|prices|balance|amount|revenue|mrr|arr|salary|cost|costs|payment|payments|paid|due|fee|fees|income|profit|sales|earnings|budget|tax|refund|invoice|spent|spend|payout|net|gross|commission|discount)(?![A-Za-z])/i;
-  const BARE_NUM_RE = /(?<![\d.,])(?:\d{1,2}(?:,\d{2})+,\d{3}(?:\.\d{1,2})?|\d{1,3}(?:[,.]\d{3})+(?:[.,]\d{1,2})?|\d+[.,]\d{2}|\d{3,})(?![\d.,]*\d)/g;
-  const PURE_BARE_RE = /^(?:\d{1,2}(?:,\d{2})+,\d{3}(?:\.\d{1,2})?|\d{1,3}(?:[,.]\d{3})+(?:[.,]\d{1,2})?|\d+[.,]\d{2}|\d{3,})$/;
+  const { FULL_RE, PART_RE, WORDS: MONEY_WORDS, BARE_NUM_RE, PURE_BARE_RE } = VeilDetect.money;
   const BASE_SKIP = 'script,style,noscript,textarea,code,pre,kbd,samp,template,title,veil-money,#veil-ui-host,[contenteditable="plaintext-only"]';
-
-  function okPhone(s) {
-    const d = s.replace(/\D/g, '');
-    if (d.length < 9 || d.length > 15) return false;
-    if (/^\d{4}-\d{1,2}-\d{1,2}/.test(s)) return false;          // a date
-    if (/[+(]/.test(s)) return true;
-    if (/^\d{1,3}(?:[ \u00a0]\d{3})+$/.test(s)) return false;     // 1 234 567 890
-    if (/[ \u00a0-]/.test(s)) return true;
-    return /^0\d{9,11}$/.test(s);                                  // 01712345678
-  }
-
-  function okCard(s) {
-    const d = s.replace(/\D/g, '');
-    if (d.length < 13 || d.length > 19) return false;
-    let sum = 0;
-    for (let i = 0; i < d.length; i++) {
-      let n = +d[d.length - 1 - i];
-      if (i % 2) { n *= 2; if (n > 9) n -= 9; }
-      sum += n;
-    }
-    return sum % 10 === 0;
-  }
-
-  function okIban(s) {
-    const v = s.replace(/ /g, '');
-    const r = (v.slice(4) + v.slice(0, 4)).replace(/[A-Z]/g, (c) => c.charCodeAt(0) - 55);
-    let m = 0;
-    for (const ch of r) m = (m * 10 + +ch) % 97;
-    return m === 1;
-  }
-
-  const OCT = '(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)';
-  const DETECTORS = {
-    email: { hint: '@', re: /[\w.%+-]+@[A-Za-z\d-]+(?:\.[A-Za-z\d-]+)*\.[A-Za-z]{2,}/g },
-    phone: {
-      hint: '\\d',
-      re: /(?<![\w+]|\d[., \u00a0-])(?:\+\d{1,3}[ \u00a0-]?)?(?:\(\d{1,4}\)[ \u00a0-]?)?\d[\d \u00a0-]{6,16}\d(?![\w]|[., \u00a0-]\d)/g,
-      ok: okPhone,
-    },
-    card: { hint: '\\d', re: /(?<![\d-])\d(?:[ -]?\d){12,18}(?![\d-])/g, ok: okCard },
-    iban: { hint: '\\d', re: /\b[A-Z]{2}\d{2}(?: ?[A-Z\d]{4}){2,7}(?: ?[A-Z\d]{1,3})?\b/g, ok: okIban },
-    key: {
-      hint: '[_-]|AKIA|AIza|eyJ',
-      re: /(?<![\w-])(?:(?:sk|pk|rk)_(?:live|test)_[A-Za-z\d]{10,}|gh[pousr]_[A-Za-z\d]{30,}|github_pat_\w{30,}|AKIA[\dA-Z]{16}|AIza[\w-]{35}|xox[abprs]-[A-Za-z\d-]{10,}|shp(?:at|ca|pa|ss)_[a-fA-F\d]{32}|sk-(?:proj-|ant-)?[\w-]{20,}|eyJ[\w-]{10,}\.[\w-]{10,}\.[\w-]{10,})(?![\w-])/g,
-    },
-    ip: { hint: '\\d\\.\\d', re: new RegExp(`(?<![\\d.])(?:${OCT}\\.){3}${OCT}(?![\\d.]*\\d)`, 'g') },
-  };
-
-  // Custom entries: plain words, or /regex/ written between slashes.
-  function buildCustomRE(list) {
-    const parts = [];
-    for (const raw of list) {
-      const s = String(raw).trim();
-      const m = s.match(/^\/(.+)\/[a-z]*$/);
-      if (m) {
-        try { new RegExp(m[1], 'u'); parts.push(`(?:${m[1]})`); } catch {}
-      } else if (s) {
-        parts.push(s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-      }
-    }
-    try { return parts.length ? new RegExp(parts.join('|'), 'giu') : null; } catch { return null; }
-  }
-
-  function sensitiveSpans(text) {
-    const spans = [];
-    const add = (re, ok) => {
-      for (const m of text.matchAll(re)) {
-        if (m[0] && (!ok || ok(m[0]))) spans.push([m.index, m.index + m[0].length]);
-      }
-    };
-    for (const t of money.types) {
-      if (t === 'money') add(MONEY_RE);
-      else add(DETECTORS[t].re, DETECTORS[t].ok);
-    }
-    if (customRE) add(customRE);
-    return spans;
-  }
 
   function normalizeMoney(v) {
     const m = { ...MONEY_DEFAULTS, ...(v || {}) };
     if (!['mask', 'blur', 'hide'].includes(m.style)) m.style = 'mask';
     if (!HAS_HL) m.style = 'blur';
     m.excludes = Array.isArray(m.excludes) ? m.excludes : [];
-    m.types = Array.isArray(m.types) ? m.types.filter((t) => t === 'money' || t in DETECTORS) : ['money'];
+    m.types = Array.isArray(m.types) ? m.types.filter((t) => VeilDetect.TYPES.includes(t)) : ['money'];
     m.custom = Array.isArray(m.custom) ? m.custom : [];
     return m;
   }
@@ -965,10 +876,7 @@
   function buildMatchers() {
     const ok = money.excludes.filter(validSelector);
     skipSel = [BASE_SKIP, ...ok].join(',');
-    customRE = buildCustomRE(money.custom);
-    const hints = money.types.map((t) => (t === 'money' ? '\\d' : DETECTORS[t].hint));
-    if (customRE) hints.push('\\S');
-    hintRE = hints.length ? new RegExp(hints.join('|')) : null;
+    matcher = VeilDetect.compile(money);
   }
 
   function moneyCSS() {
@@ -1037,7 +945,7 @@ input[${MATTR}]{${input}}`;
     const v = String(inp.value || '').trim();
     const isMoney = !inp.closest(skipSel) && !!v && (
       (money.types.includes('money') && /^[-−]?\d[\d,.]*$/.test(v) && labelHasMoney(inp)) ||
-      sensitiveSpans(v).some(([s, e]) => s === 0 && e === v.length));
+      matcher.find(v).some(([s, e]) => s === 0 && e === v.length));
     if (isMoney && !moneyEls.has(inp)) { moneyEls.add(inp); inp.setAttribute(MATTR, ''); }
     else if (!isMoney && moneyEls.has(inp)) { moneyEls.delete(inp); inp.removeAttribute(MATTR); }
   }
@@ -1078,7 +986,7 @@ input[${MATTR}]{${input}}`;
   function scanText(node) {
     clearKey(node);
     const text = node.data;
-    if (!text || text.length > 5000 || !hintRE.test(text)) return;
+    if (!text || text.length > 5000 || !matcher.test(text)) return;
     const parent = node.parentElement;
     if (!parent || parent.closest(skipSel)) return;
 
@@ -1088,16 +996,8 @@ input[${MATTR}]{${input}}`;
       unmarkElement(marked);
     }
 
-    const found = sensitiveSpans(text);
-    if (money.bare && money.types.includes('money')) bareSpans(node, text, found);
-    // Detectors can overlap (an amount inside a custom phrase), so merge.
-    found.sort((a, b) => a[0] - b[0]);
-    const spans = [];
-    for (const [s, e] of found) {
-      const last = spans[spans.length - 1];
-      if (last && s < last[1]) last[1] = Math.max(last[1], e);
-      else spans.push([s, e]);
-    }
+    const spans = matcher.find(text);
+    if (money.bare && money.types.includes('money')) bareSpans(node, text, spans);
 
     if (spans.length) {
       if (money.style === 'blur') {
@@ -1138,7 +1038,7 @@ input[${MATTR}]{${input}}`;
       if (root.tagName === 'INPUT') return scanInput(root);
     }
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-      acceptNode: (n) => (hintRE.test(n.data) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP),
+      acceptNode: (n) => (matcher.test(n.data) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP),
     });
     const nodes = [];
     while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -1191,14 +1091,14 @@ input[${MATTR}]{${input}}`;
   }
 
   function fullMoneyScan() {
-    if (money.enabled && !paused && hintRE) scanTree(document.body || document.documentElement);
+    if (money.enabled && !paused && !matcher.empty) scanTree(document.body || document.documentElement);
   }
 
   function startMoney() {
     stopMoney();
     if (!money.enabled || paused) return;
     buildMatchers();
-    if (!hintRE) return;
+    if (matcher.empty) return;
     if (HAS_HL && money.style !== 'blur') {
       moneyHL = new Highlight();
       CSS.highlights.set('veil-money', moneyHL);
