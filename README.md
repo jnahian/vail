@@ -1,6 +1,6 @@
 # Veil: Hide, Blur & Rewrite
 
-A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. Your changes are saved and come back every time you visit.
+A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 
 ## Install
 
@@ -9,7 +9,7 @@ A Chrome extension for picking any element on a web page and then hiding it, blu
 3. Click **Load unpacked** and select the `veil` folder.
 4. Pin Veil from the puzzle-piece menu.
 
-Tabs that were already open start working the first time you use Veil in them. You can also reload those tabs.
+When Veil is installed, updated or reloaded, it starts again in the tabs that are already open. If a tab does not respond, reload it.
 
 ## Use
 
@@ -39,9 +39,25 @@ Every save shows an **Undo** button for 5 seconds.
 
 To change a saved rule, select the same element again and apply the same action. Veil updates the existing rule instead of adding a duplicate.
 
-## Hide all money on a page
+## Hide sensitive data on a site
 
-In the popup, turn on **Hide money on this site**. Veil then finds every amount on the site's pages, including ones that load later, and covers them. The setting applies per site.
+In the popup, turn on **Hide sensitive data on this site**, then select the types of data to hide. Veil finds every match on the site's pages, including matches that load later, and covers them. The configuration applies per site, and each selected type shows as a row under **Sensitive data** in the popup. Delete a row to stop hiding that type.
+
+**Types:**
+
+| Type | Examples | How Veil avoids false matches |
+|---|---|---|
+| Money | `$1,240.50`, `Rs. 1,00,000` | See the list below |
+| Emails | `jane@example.com` | Needs a name, an `@` and a domain |
+| Phone numbers | `+880 1712-345678`, `(555) 123-4567`, `01712345678` | 9 to 15 digits. A number without separators must start with 0. Dates and `1 234 567` style amounts are skipped |
+| Card numbers | `4242 4242 4242 4242` | 13 to 19 digits that pass the Luhn checksum (the check digit that all card numbers have) |
+| IBANs | `DE89 3704 0044 0532 0130 00` | Must pass the IBAN checksum |
+| API keys and tokens | `sk_live_…`, `ghp_…`, `shpat_…`, `AKIA…`, `xoxb-…`, JWTs | Only known key formats |
+| IP addresses | `192.168.1.10` | IPv4 only |
+
+**Custom** takes one entry per line. A plain entry matches that text, and case does not matter. An entry between slashes, such as `/INV-\d+/`, is a regular expression.
+
+Money is the only type selected by default. Veil does not detect names, street addresses or bank account numbers, because they have no reliable format. Use the element picker for them.
 
 **What counts as money:**
 - A currency symbol or code before or after a number: `$1,240.50`, `1.240,50 €`, `৳ 5,000`, `Tk 500`, `Rs. 2,500`, `USD 99`, `99 BDT`, `CHF 1'250.00`, `US$1,000`, `50¢`.
@@ -56,20 +72,20 @@ Code blocks are skipped, and so are version numbers, years, percentages and phon
 
 | Style | Looks like | Changes the page? |
 |---|---|---|
-| Mask (default) | Solid grey bar over the amount | No. Uses Chrome's CSS Highlight API, so it's safe on React and Vue sites |
-| Hide | Amount is invisible, space kept | No |
-| Blur | Blurred, clear on hover | Yes. Each amount is wrapped in a `<veil-money>` tag, which can occasionally upset framework-rendered pages |
+| Mask (default) | Solid grey bar over the match | No. Uses Chrome's CSS Highlight API, so it's safe on React and Vue sites |
+| Hide | Match is invisible, space kept | No |
+| Blur | Blurred, clear on hover | Yes. Each match is wrapped in a `<veil-money>` tag, which can occasionally upset framework-rendered pages |
 
 **Controls:**
-- **Alt+Shift+M** shows the amounts on the current tab. Press it again to hide them.
-- If something that isn't money gets covered, pick it (or right-click it and choose **Veil this element**), then click **Keep this visible when hiding money**. The popup shows how many elements are kept visible and lets you reset them.
+- **Alt+Shift+M** shows the hidden data on the current tab. Press it again to hide it.
+- If Veil covers something that is not sensitive, pick it (or right-click it and choose **Veil this element**), then click **Keep this visible when hiding sensitive data**. The popup shows how many elements are kept visible and lets you reset them.
 
 **Won't be caught:**
-- Amounts drawn inside `<canvas>` (many chart libraries) or in images.
-- Amounts inside other sites' shadow DOM components.
+- Data drawn inside `<canvas>` (many chart libraries) or in images.
+- Data inside other sites' shadow DOM components.
 - Text styled with gradient fills, which the mask can't cover.
 - Numbers with no currency, when the plain-number setting is off.
-- Amounts already on screen before the first scan. The scan starts early, but a brief flash is possible on slow pages.
+- Data already on screen before the first scan. The scan starts early, but a brief flash is possible on slow pages.
 - Mask and Hide have no hover reveal. Use the shortcut instead.
 
 ## Popup
@@ -112,7 +128,7 @@ You can change shortcuts at `chrome://extensions/shortcuts`.
 ```
 manifest.json   MV3 manifest, permissions, shortcuts
 background.js   context menu, shortcuts, toolbar badge
-content.js      picker, panel, editor, rule engine, money detection
+content.js      picker, panel, editor, rule engine, sensitive data detection
 popup.html/css/js  rule manager
 icons/          16, 32, 48, 128 px
 ```

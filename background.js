@@ -1,10 +1,16 @@
 // Veil service worker: context menu, keyboard shortcuts, toolbar badge.
 const MENU_ID = 'veil-element';
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener(async () => {
   chrome.contextMenus.removeAll(() => {
     chrome.contextMenus.create({ id: MENU_ID, title: 'Veil this element', contexts: ['all'] });
   });
+  // Open tabs keep the old content script after an update, and it can no
+  // longer reach the extension. A fresh copy takes over from it.
+  // Tabs that Veil cannot access reject the call, so errors are ignored.
+  for (const tab of await chrome.tabs.query({})) {
+    chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['content.js'] }).catch(() => {});
+  }
 });
 
 // Tabs opened before install have no content script yet, so inject on demand.

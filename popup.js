@@ -5,6 +5,7 @@ const ICONS = {
   blur: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8" stroke-dasharray="2 3"/><circle cx="12" cy="12" r="3.5"/></svg>',
   hide: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18M10.6 5.1A10 10 0 0 1 12 5c5 0 9 5 10 7a17 17 0 0 1-3 3.8M6.6 6.6C4.4 8 2.8 10.2 2 12c1 2 5 7 10 7 1.8 0 3.4-.6 4.8-1.5M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>',
   locate: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>',
+  shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>',
   trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
 };
 
@@ -13,6 +14,14 @@ let url;
 let KEY;
 let pageKey;
 let rules = [];
+let money = null; // sensitive data configuration for this site
+
+const MONEY_DEFAULTS = { enabled: false, style: 'mask', bare: false, blur: 6, excludes: [], types: ['money'], custom: [] };
+const TYPE_NAMES = {
+  money: 'Money', email: 'Emails', phone: 'Phone numbers', card: 'Card numbers',
+  iban: 'IBANs', key: 'API keys and tokens', ip: 'IP addresses',
+};
+const STYLE_WORDS = { mask: 'Masked', blur: 'Blurred', hide: 'Hidden' };
 
 function toast(msg) {
   const t = $('#toast');
@@ -104,30 +113,70 @@ function row(r, live) {
     tools.append(loc);
   }
 
+  tools.append(delButton(() => saveRules(rules.filter((x) => x.id !== r.id))));
+
+  li.append(badge, body, tools);
+  return li;
+}
+
+function delButton(onclick) {
   const del = document.createElement('button');
   del.type = 'button';
   del.className = 'tool del';
   del.title = 'Delete';
   del.setAttribute('aria-label', 'Delete');
   del.innerHTML = ICONS.trash;
-  del.onclick = () => saveRules(rules.filter((x) => x.id !== r.id));
-  tools.append(del);
+  del.onclick = onclick;
+  return del;
+}
 
+// One row per data type that the sensitive data form hides on this site.
+function dataRow(title, drop) {
+  const li = document.createElement('li');
+  li.className = 'rule';
+  const badge = document.createElement('span');
+  badge.className = 'badge data';
+  badge.innerHTML = ICONS.shield;
+  const body = document.createElement('div');
+  body.className = 'body';
+  const t = document.createElement('div');
+  t.className = 'title';
+  t.textContent = title;
+  t.title = title;
+  const meta = document.createElement('div');
+  meta.className = 'meta';
+  meta.textContent = `${STYLE_WORDS[money.style] || 'Hidden'} on the whole site`;
+  body.append(t, meta);
+  const tools = document.createElement('div');
+  tools.className = 'tools';
+  tools.append(delButton(() => chrome.storage.local.set({ [`money:${url.hostname}`]: { ...money, ...drop } })));
   li.append(badge, body, tools);
   return li;
 }
 
+function dataSection() {
+  if (!money?.enabled) return null;
+  const items = money.types.map((t) => dataRow(TYPE_NAMES[t], { types: money.types.filter((x) => x !== t) }));
+  if (money.custom.length) items.push(dataRow(`Custom: ${money.custom.join(', ')}`, { custom: [] }));
+  return items.length ? sectionEl('Sensitive data', items) : null;
+}
+
 function section(title, list, live) {
   if (!list.length) return null;
+  list.sort((x, y) => (y.createdAt || 0) - (x.createdAt || 0));
+  return sectionEl(title, list.map((r) => row(r, live)));
+}
+
+function sectionEl(title, items) {
   const sec = document.createElement('section');
   const h = document.createElement('h2');
   const a = document.createElement('span');
   a.textContent = title;
   const b = document.createElement('span');
-  b.textContent = String(list.length);
+  b.textContent = String(items.length);
   h.append(a, b);
   const ul = document.createElement('ul');
-  list.sort((x, y) => (y.createdAt || 0) - (x.createdAt || 0)).forEach((r) => ul.append(row(r, live)));
+  ul.append(...items);
   sec.append(h, ul);
   return sec;
 }
@@ -136,14 +185,16 @@ function render() {
   const here = rules.filter((r) => r.scope !== 'site' && r.page === pageKey);
   const site = rules.filter((r) => r.scope === 'site');
   const other = rules.filter((r) => r.scope !== 'site' && r.page !== pageKey);
+  const data = dataSection();
   $('#lists').replaceChildren(
     ...[
+      data,
       section('This page', here, true),
       section('Whole site', site, true),
       section('Other pages on this site', other, false),
     ].filter(Boolean),
   );
-  $('#empty').hidden = rules.length > 0;
+  $('#empty').hidden = rules.length > 0 || !!data;
   $('#clear').hidden = rules.length === 0;
 }
 
@@ -271,15 +322,14 @@ async function init() {
 }
 
 const STYLE_NOTES = {
-  mask: 'Covers amounts with a solid bar. Safe on every site because the page itself is not changed.',
-  blur: 'Blurs amounts and shows them clearly on hover. This edits the page, which can occasionally upset sites built with React or Vue.',
-  hide: 'Makes amounts invisible but keeps their space. Safe on every site.',
+  mask: 'Covers matches with a solid bar. Safe on every site because the page itself is not changed.',
+  blur: 'Blurs matches and shows them clearly on hover. This edits the page, which can occasionally upset sites built with React or Vue.',
+  hide: 'Makes matches invisible but keeps their space. Safe on every site.',
 };
 
 async function setupMoney(cmds) {
   const MKEY = `money:${url.hostname}`;
-  const defaults = { enabled: false, style: 'mask', bare: false, blur: 6, excludes: [] };
-  let money = { ...defaults, ...((await chrome.storage.local.get(MKEY))[MKEY] || {}) };
+  money = { ...MONEY_DEFAULTS, ...((await chrome.storage.local.get(MKEY))[MKEY] || {}) };
   const revealCmd = cmds.find((c) => c.name === 'toggle-money-reveal');
 
   const paint = () => {
@@ -287,7 +337,10 @@ async function setupMoney(cmds) {
     $('#moneyOpts').hidden = !money.enabled;
     document.querySelectorAll('[data-style]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.style === money.style)));
     $('#styleNote').textContent = STYLE_NOTES[money.style] || '';
+    document.querySelectorAll('[data-type]').forEach((c) => { c.checked = money.types.includes(c.dataset.type); });
+    $('#bareRow').hidden = !money.types.includes('money');
     $('#moneyBare').checked = !!money.bare;
+    if (document.activeElement !== $('#custom')) $('#custom').value = money.custom.join('\n');
     const n = (money.excludes || []).length;
     $('#exclRow').hidden = n === 0;
     $('#exclText').textContent = `${n} element${n === 1 ? '' : 's'} always kept visible`;
@@ -296,10 +349,11 @@ async function setupMoney(cmds) {
     if (revealCmd?.shortcut) {
       const k = document.createElement('kbd');
       k.textContent = revealCmd.shortcut;
-      note.append('Press ', k, ' to show amounts on this tab for a moment.');
+      note.append('Press ', k, ' to show hidden data on this tab for a moment.');
     } else {
-      note.textContent = 'Set a shortcut at chrome://extensions/shortcuts to show amounts for a moment.';
+      note.textContent = 'Set a shortcut at chrome://extensions/shortcuts to show hidden data for a moment.';
     }
+    render();
   };
   const save = async (patch) => {
     money = { ...money, ...patch };
@@ -314,12 +368,16 @@ async function setupMoney(cmds) {
     if (money.enabled) send({ type: 'veil:ping' }).catch(() => {});
   };
   document.querySelectorAll('[data-style]').forEach((b) => { b.onclick = () => save({ style: b.dataset.style }); });
+  document.querySelectorAll('[data-type]').forEach((c) => {
+    c.onchange = () => save({ types: Object.keys(TYPE_NAMES).filter((t) => $(`[data-type="${t}"]`).checked) });
+  });
   $('#moneyBare').onchange = () => save({ bare: $('#moneyBare').checked });
+  $('#custom').onchange = () => save({ custom: $('#custom').value.split('\n').map((x) => x.trim()).filter(Boolean) });
   $('#exclReset').onclick = () => save({ excludes: [] });
 
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === 'local' && MKEY in changes) {
-      money = { ...defaults, ...(changes[MKEY].newValue || {}) };
+      money = { ...MONEY_DEFAULTS, ...(changes[MKEY].newValue || {}) };
       paint();
     }
   });

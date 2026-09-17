@@ -27,8 +27,8 @@
     <section class="money" id="money">
       <div class="money-head">
         <div>
-          <h2 class="money-title" id="moneyLabel">Hide money on this site</h2>
-          <p class="money-sub">Prices, totals and balances shown with a currency</p>
+          <h2 class="money-title" id="moneyLabel">Hide sensitive data on this site</h2>
+          <p class="money-sub">Money, emails, phone numbers and more</p>
         </div>
         <label class="switch">
           <input type="checkbox" id="moneyOn" role="switch" aria-labelledby="moneyLabel">
@@ -36,16 +36,30 @@
         </label>
       </div>
       <div id="moneyOpts" class="money-opts" hidden>
+        <fieldset class="types">
+          <legend>What to hide</legend>
+          <label class="check"><input type="checkbox" data-type="money"><span>Money</span></label>
+          <label class="check"><input type="checkbox" data-type="email"><span>Emails</span></label>
+          <label class="check"><input type="checkbox" data-type="phone"><span>Phone numbers</span></label>
+          <label class="check"><input type="checkbox" data-type="card"><span>Card numbers</span></label>
+          <label class="check"><input type="checkbox" data-type="iban"><span>IBANs</span></label>
+          <label class="check"><input type="checkbox" data-type="key"><span>API keys and tokens</span></label>
+          <label class="check"><input type="checkbox" data-type="ip"><span>IP addresses</span></label>
+        </fieldset>
+        <label class="check" id="bareRow">
+          <input type="checkbox" id="moneyBare">
+          <span>Also catch plain numbers next to words like Total or Balance</span>
+        </label>
+        <label class="field">
+          <span>Custom words, or /patterns/ between slashes, one per line</span>
+          <textarea id="custom" rows="2" spellcheck="false"></textarea>
+        </label>
         <div class="seg" role="group" aria-label="How amounts look">
           <button type="button" data-style="mask">Mask</button>
           <button type="button" data-style="blur">Blur</button>
           <button type="button" data-style="hide">Hide</button>
         </div>
         <p class="note" id="styleNote"></p>
-        <label class="check">
-          <input type="checkbox" id="moneyBare">
-          <span>Also catch plain numbers next to words like Total or Balance</span>
-        </label>
         <div class="excl" id="exclRow" hidden>
           <span id="exclText"></span>
           <button type="button" id="exclReset">Reset</button>
