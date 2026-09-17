@@ -180,14 +180,14 @@ function promoHtml(width, height, icon) {
         : `<span style="font:600 ${13 * u}px system-ui;color:#1e2340;filter:blur(${4 * u}px)">$${value},480.00</span>`}
     </div>`;
   return `<body style="margin:0;width:${width}px;height:${height}px;overflow:hidden;
-      background:radial-gradient(circle at 20% 30%,#7a6cf0,#5b4bdb 45%,#3f31b8);font-family:system-ui">
+      background:radial-gradient(circle at 20% 30%,#136F68,#0B4F4A 50%,#073A36);font-family:system-ui">
     <div style="height:100%;display:flex;align-items:center;justify-content:center;gap:${40 * u}px">
     <div style="display:flex;flex-direction:column;align-items:center;gap:${10 * u}px">
       <img src="${icon}" style="width:${96 * u}px;height:${96 * u}px;filter:drop-shadow(0 ${6 * u}px ${14 * u}px rgba(0,0,0,.25))">
       <span style="color:#fff;font-weight:700;font-size:${30 * u}px;letter-spacing:-.01em">Veil</span>
     </div>
     <div style="transform:rotate(-3deg);width:${220 * u}px;background:#fff;border-radius:${14 * u}px;padding:${14 * u}px ${16 * u}px;
-        box-shadow:0 ${18 * u}px ${40 * u}px rgba(20,16,70,.35)">
+        box-shadow:0 ${18 * u}px ${40 * u}px rgba(4,40,37,.35)">
       <div style="height:${9 * u}px;width:${90 * u}px;border-radius:${5 * u}px;background:#1e2340;margin-bottom:${10 * u}px"></div>
       ${row(60 * u, 70, 'mask')}${row(44 * u, 12, 'blur')}${row(70 * u, 90, 'mask')}${row(52 * u, 48, 'blur')}${row(38 * u, 56, 'mask')}
     </div>

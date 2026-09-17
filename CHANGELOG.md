@@ -8,6 +8,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- New deep teal brand color (`#0F766E`) for the icon, popup, on-page panel and picker.
 - Shorter extension description, because the Chrome Web Store allows at most 132 characters.
 
 ### Fixed
