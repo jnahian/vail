@@ -5,5 +5,10 @@
   <p id="money">Balance $1,240.50 due</p>
   <p id="email">Write to jane@example.com</p>
   <p id="plain">Nothing secret here</p>
+  <p>Token <code id="key"></code>, sample price <code>$5.00</code></p>
+  <script>
+    // Joined at runtime so that secret scanners do not flag this file.
+    document.getElementById('key').textContent = 'sk_live_' + 'abc123def456';
+  </script>
 </body>
 </html>

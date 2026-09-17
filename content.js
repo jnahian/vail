@@ -855,13 +855,17 @@
   let moneyHL = null;
   let skipSel = '';
   let matcher = VeilDetect.compile(); // built from the configuration in startMoney
+  let codeMatcher = matcher;          // the same, for text inside code elements
   const HAS_HL = typeof Highlight === 'function' && typeof CSS !== 'undefined' && !!CSS.highlights;
   const nodeRanges = new Map(); // Text node or Element -> Range[]
   const moneyEls = new Set();   // elements and inputs carrying data-veil-money
   const MATTR = 'data-veil-money';
 
   const { FULL_RE, PART_RE, WORDS: MONEY_WORDS, BARE_NUM_RE, PURE_BARE_RE } = VeilDetect.money;
-  const BASE_SKIP = 'script,style,noscript,textarea,code,pre,kbd,samp,template,title,veil-money,#veil-ui-host,[contenteditable="plaintext-only"]';
+  const BASE_SKIP = 'script,style,noscript,textarea,template,title,veil-money,#veil-ui-host,[contenteditable="plaintext-only"]';
+  // Code often holds numbers and addresses that are not private, but it is
+  // also where pages show API keys, so only the key detector runs there.
+  const CODE_SEL = 'code,pre,kbd,samp';
 
   function normalizeMoney(v) {
     const m = { ...MONEY_DEFAULTS, ...(v || {}) };
@@ -877,6 +881,7 @@
     const ok = money.excludes.filter(validSelector);
     skipSel = [BASE_SKIP, ...ok].join(',');
     matcher = VeilDetect.compile(money);
+    codeMatcher = VeilDetect.compile({ types: money.types.filter((t) => t === 'key') });
   }
 
   function moneyCSS() {
@@ -989,6 +994,8 @@ input[${MATTR}]{${input}}`;
     if (!text || text.length > 5000 || !matcher.test(text)) return;
     const parent = node.parentElement;
     if (!parent || parent.closest(skipSel)) return;
+    const inCode = !!parent.closest(CODE_SEL);
+    if (inCode && !codeMatcher.test(text)) return;
 
     const marked = parent.closest(`[${MATTR}]`);
     if (marked) {
@@ -996,8 +1003,8 @@ input[${MATTR}]{${input}}`;
       unmarkElement(marked);
     }
 
-    const spans = matcher.find(text);
-    if (money.bare && money.types.includes('money')) bareSpans(node, text, spans);
+    const spans = (inCode ? codeMatcher : matcher).find(text);
+    if (!inCode && money.bare && money.types.includes('money')) bareSpans(node, text, spans);
 
     if (spans.length) {
       if (money.style === 'blur') {
@@ -1019,7 +1026,7 @@ input[${MATTR}]{${input}}`;
     }
 
     // Amount split across elements, e.g. <span>$</span><span>1,240</span>
-    if (money.types.includes('money') && PART_RE.test(text.trim())) {
+    if (!inCode && money.types.includes('money') && PART_RE.test(text.trim())) {
       let el = parent;
       for (let i = 0; i < 3 && el && el !== document.body && el !== document.documentElement; i++, el = el.parentElement) {
         const t = norm(el.textContent);
