@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   // longer reach the extension. A fresh copy takes over from it.
   // Tabs that Veil cannot access reject the call, so errors are ignored.
   for (const tab of await chrome.tabs.query({})) {
-    chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['content.js'] }).catch(() => {});
+    chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['detect.js', 'content.js'] }).catch(() => {});
   }
 });
 
@@ -19,7 +19,7 @@ async function sendToTab(tabId, msg) {
     return await chrome.tabs.sendMessage(tabId, msg);
   } catch {
     try {
-      await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+      await chrome.scripting.executeScript({ target: { tabId }, files: ['detect.js', 'content.js'] });
       return await chrome.tabs.sendMessage(tabId, msg);
     } catch (err) {
       console.warn('Veil cannot run on this tab:', err);
