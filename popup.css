@@ -1,8 +1,8 @@
 :root {
   --vellum: #EEF1F6;
   --ink: #1E2340;
-  --iris: #5B4BDB;
-  --iris-deep: #4A3BC4;
+  --teal: #0F766E;
+  --teal-deep: #115E59;
   --mist: #C9CFDC;
   --slate: #6A7190;
   --rose: #C23A4B;
@@ -18,7 +18,7 @@ body {
   background: var(--vellum);
 }
 button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
-button:focus-visible, input:focus-visible + .track { outline: 2px solid var(--iris); outline-offset: 2px; }
+button:focus-visible, input:focus-visible + .track { outline: 2px solid var(--teal); outline-offset: 2px; }
 [hidden] { display: none !important; }
 
 header {
@@ -40,7 +40,7 @@ h1 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
   content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%;
   background: #fff; box-shadow: 0 1px 2px rgba(30,35,64,.3); transition: transform .15s;
 }
-.switch input:checked + .track { background: var(--iris); }
+.switch input:checked + .track { background: var(--teal); }
 .switch input:checked + .track::after { transform: translateX(14px); }
 .state { font-size: 12px; color: var(--slate); min-width: 44px; }
 
@@ -49,10 +49,10 @@ main { padding: 0 12px 8px; }
 .pick {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
   padding: 12px 14px; border-radius: 14px;
-  background: var(--iris); color: #fff; font-weight: 600; font-size: 14px;
-  box-shadow: 0 8px 20px -10px rgba(91,75,219,.8);
+  background: var(--teal); color: #fff; font-weight: 600; font-size: 14px;
+  box-shadow: 0 8px 20px -10px rgba(15, 118, 110,.8);
 }
-.pick:hover { background: var(--iris-deep); }
+.pick:hover { background: var(--teal-deep); }
 kbd {
   font: inherit; font-size: 11px; font-weight: 500; padding: 2px 7px; border-radius: 6px;
   background: rgba(255,255,255,.18);
@@ -72,7 +72,7 @@ section { margin-top: 14px; }
 .note { margin: 0; font-size: 12px; color: var(--slate); }
 .note kbd { background: rgba(30,35,64,.07); color: var(--ink); }
 .check { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; cursor: pointer; }
-.check input { margin: 2px 0 0; accent-color: var(--iris); }
+.check input { margin: 2px 0 0; accent-color: var(--teal); }
 .types { border: 0; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
 .types legend { padding: 0; margin-bottom: 6px; font-size: 12px; font-weight: 600; color: var(--slate); }
 .field { display: grid; gap: 4px; font-size: 12px; color: var(--slate); }
@@ -80,10 +80,10 @@ section { margin-top: 14px; }
   width: 100%; resize: vertical; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--mist);
   font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink); background: #fff;
 }
-.field textarea:focus-visible { outline: 2px solid var(--iris); outline-offset: 1px; }
+.field textarea:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
 .excl { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--slate); }
-.excl button { color: var(--iris); font-weight: 600; padding: 3px 6px; border-radius: 6px; }
-.excl button:hover { background: rgba(91,75,219,.1); }
+.excl button { color: var(--teal); font-weight: 600; padding: 3px 6px; border-radius: 6px; }
+.excl button:hover { background: rgba(15, 118, 110,.1); }
 section h2 {
   margin: 0 4px 6px; font-size: 12px; font-weight: 600; color: var(--slate);
   display: flex; justify-content: space-between;
@@ -98,11 +98,11 @@ li.rule.off .badge, li.rule.off .body { opacity: .45; }
 
 .badge {
   width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
-  background: rgba(91,75,219,.1); color: var(--iris);
+  background: rgba(15, 118, 110,.1); color: var(--teal);
 }
 .badge.hide { background: rgba(30,35,64,.08); color: var(--ink); }
 .badge.data { background: rgba(194,58,75,.1); color: var(--rose); }
-.badge.text { background: rgba(91,75,219,.16); }
+.badge.text { background: rgba(15, 118, 110,.16); }
 .badge svg { width: 17px; height: 17px; }
 
 .body { min-width: 0; }

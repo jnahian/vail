@@ -51,7 +51,7 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
   if (msg?.type === 'veil:count' && sender.tab?.id != null) {
     const tabId = sender.tab.id;
     chrome.action.setBadgeText({ tabId, text: msg.n ? String(msg.n) : '' }).catch(() => {});
-    chrome.action.setBadgeBackgroundColor({ tabId, color: '#5B4BDB' }).catch(() => {});
+    chrome.action.setBadgeBackgroundColor({ tabId, color: '#0F766E' }).catch(() => {});
     chrome.action.setBadgeTextColor?.({ tabId, color: '#FFFFFF' })?.catch?.(() => {});
   }
 });
