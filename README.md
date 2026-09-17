@@ -1,6 +1,6 @@
 # Veil: Hide, Blur & Rewrite
 
-Website: <https://jnahian.github.io/vail/>
+Website: <https://vail.jnahian.me/>
 
 A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 

@@ -1,6 +1,6 @@
 # Veil landing page
 
-The landing page for Veil, built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). GitHub Actions deploys it to <https://jnahian.github.io/vail/> after each change on `main`.
+The landing page for Veil, built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). GitHub Actions deploys it to <https://vail.jnahian.me/> after each change on `main`.
 
 ## Develop
 
@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Then open <http://localhost:4321/vail/>.
+Then open <http://localhost:4321/>.
 
 ## Build
 
