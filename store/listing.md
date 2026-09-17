@@ -108,5 +108,5 @@ Select all three certifications:
 ### Privacy policy URL
 
 ```text
-https://github.com/jnahian/vail/blob/main/PRIVACY.md
+https://vail.jnahian.me/privacy/
 ```

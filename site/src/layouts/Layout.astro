@@ -20,6 +20,12 @@ const ogUrl = new URL(ogImage.src, Astro.site);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f766e" />
     <link rel="icon" type="image/png" href={icon32.src} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap"
+    />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
@@ -27,7 +33,7 @@ const ogUrl = new URL(ogImage.src, Astro.site);
     <meta property="og:image" content={ogUrl} />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
-  <body class="bg-white font-sans text-ink antialiased">
+  <body class="bg-paper font-sans text-ink antialiased">
     <slot />
   </body>
 </html>

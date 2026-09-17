@@ -7,6 +7,7 @@ on:
       - site/**
       - extension/icons/**
       - store/assets/**
+      - PRIVACY.md
       - .github/workflows/deploy-site.yml
   workflow_dispatch:
 
