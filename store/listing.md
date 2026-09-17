@@ -50,7 +50,8 @@ Veil makes no network requests, and has no analytics and no remote code. Your ru
 LIMITS
 Veil hides data visually only. The page's own scripts can still read it. Veil does not work inside iframes, canvas charts or images.
 
-Veil is open source under the MIT License: https://github.com/jnahian/vail
+Website: https://vail.jnahian.me
+Source code (MIT License): https://github.com/jnahian/vail
 ```
 
 ### Other fields
