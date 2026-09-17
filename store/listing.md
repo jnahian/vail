@@ -64,7 +64,7 @@ Veil is open source under the MIT License: https://github.com/jnahian/vail
 | Small promo tile | `assets/promo-small-440x280.png` |
 | Marquee promo tile | `assets/promo-marquee-1400x560.png` |
 | Official URL | None |
-| Homepage URL | `https://github.com/jnahian/vail` |
+| Homepage URL | `https://vail.jnahian.me/` |
 | Support URL | `https://github.com/jnahian/vail/issues` |
 | Mature content | Off |
 

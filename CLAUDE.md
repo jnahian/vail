@@ -23,4 +23,4 @@ Run `npm test` before every commit.
 
 ## Landing page
 
-`site/` is the landing page, built with Astro and Tailwind CSS and deployed to GitHub Pages at https://jnahian.github.io/vail/ by `.github/workflows/deploy-site.yml`. It has its own `package.json`. Run `npm run build` in `site/` before you commit changes there. The page imports its images from `icons/` and `store/assets/`, so run `npm run store:assets` first when the extension UI changes.
+`site/` is the landing page, built with Astro and Tailwind CSS and deployed to GitHub Pages at https://vail.jnahian.me/ by `.github/workflows/deploy-site.yml`. It has its own `package.json`. Run `npm run build` in `site/` before you commit changes there. The page imports its images from `icons/` and `store/assets/`, so run `npm run store:assets` first when the extension UI changes.
