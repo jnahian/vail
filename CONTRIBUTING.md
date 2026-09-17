@@ -19,7 +19,7 @@ If the bug is a security problem, do not open an issue. Follow the [security pol
 
 1. Fork the repository, then clone your fork.
 2. Open `chrome://extensions` and turn on **Developer mode**.
-3. Click **Load unpacked** and select the cloned folder.
+3. Click **Load unpacked** and select the `extension` folder in the clone.
 4. After each change, click the reload icon on the Veil card at `chrome://extensions`.
 5. Install the test tools:
 
@@ -56,10 +56,10 @@ The tests use two seams (public boundaries that do not change when the code insi
 
 | Seam | What it covers | Location | Command |
 |---|---|---|---|
-| `compile(config).find(text)` in `detect.js` | Sensitive data detection, including near misses | `tests/unit/` | `npm run test:unit` |
+| `compile(config).find(text)` in `extension/detect.js` | Sensitive data detection, including near misses | `tests/unit/` | `npm run test:unit` |
 | The extension in Chromium | What a user sees on a page: rules, sensitive data styles, pause, and reloads | `tests/e2e/` | `npm run test:e2e` |
 
-Test through these seams, not through the internal functions of `content.js`. If a change needs a new seam, discuss it in the issue or pull request first.
+Test through these seams, not through the internal functions of `extension/content.js`. If a change needs a new seam, discuss it in the issue or pull request first.
 
 Run all the tests before you open a pull request:
 

@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { compile } = require('../../detect.js');
+const { compile } = require('../../extension/detect.js');
 
 // Returns the matched text, which reads better in failures than offsets.
 const find = (config, text) => compile(config).find(text).map(([s, e]) => text.slice(s, e));

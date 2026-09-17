@@ -34,7 +34,7 @@ The store accepts only a version number that is higher than all earlier uploads.
 
 1. Merge the open pull requests into `main`.
 2. Create a branch for the release.
-3. Set the same version in `manifest.json` and `package.json`, for example `1.0.1`.
+3. Set the same version in `extension/manifest.json` and `package.json`, for example `1.0.1`.
 4. In `CHANGELOG.md`, rename `[Unreleased]` to the new version and date, and add a new empty `[Unreleased]` section.
 5. Run the tests:
 

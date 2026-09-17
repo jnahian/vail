@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - site/**
-      - icons/**
+      - extension/icons/**
       - store/assets/**
       - .github/workflows/deploy-site.yml
   workflow_dispatch:

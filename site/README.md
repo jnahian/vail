@@ -19,4 +19,4 @@ Then open <http://localhost:4321/>.
 npm run build
 ```
 
-The page uses the extension icons from `../icons/` and the store screenshots from `../store/assets/`. To update the screenshots, run `npm run store:assets` in the repository root.
+The page uses the extension icons from `../extension/icons/` and the store screenshots from `../store/assets/`. To update the screenshots, run `npm run store:assets` in the repository root.
