@@ -269,16 +269,16 @@
     [hidden] { display: none !important; }
     .ui { font: 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; color: #1E2340; }
 
-    .box { position: fixed; pointer-events: none; border: 2px solid #5B4BDB; border-radius: 4px;
-      background: rgba(91, 75, 219, .08); box-shadow: 0 0 0 4000px rgba(30, 35, 64, .10);
+    .box { position: fixed; pointer-events: none; border: 2px solid #0F766E; border-radius: 4px;
+      background: rgba(15, 118, 110, .08); box-shadow: 0 0 0 4000px rgba(30, 35, 64, .10);
       transition: left .05s, top .05s, width .05s, height .05s; }
     .box.locked { background: transparent; }
     .box.edit { background: transparent; border-style: dashed; box-shadow: none; }
-    .box.flash { background: rgba(91, 75, 219, .18); box-shadow: none; animation: pulse 1.2s ease-out; }
-    @keyframes pulse { 0% { outline: 0 solid rgba(91,75,219,.5); } 100% { outline: 18px solid rgba(91,75,219,0); } }
+    .box.flash { background: rgba(15, 118, 110, .18); box-shadow: none; animation: pulse 1.2s ease-out; }
+    @keyframes pulse { 0% { outline: 0 solid rgba(15, 118, 110,.5); } 100% { outline: 18px solid rgba(15, 118, 110,0); } }
 
     .tag { position: fixed; pointer-events: none; display: flex; gap: 8px; align-items: baseline;
-      max-width: 70vw; padding: 4px 9px; border-radius: 6px; background: #5B4BDB; color: #fff;
+      max-width: 70vw; padding: 4px 9px; border-radius: 6px; background: #0F766E; color: #fff;
       font-size: 12px; white-space: nowrap; overflow: hidden; }
     .tag .name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
     .tag .dim { opacity: .75; }
@@ -300,7 +300,7 @@
     .head .title { font-weight: 650; font-size: 14px; }
     .head .el { flex: 1; min-width: 0; color: #6A7190; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
-    button:focus-visible, input:focus-visible { outline: 2px solid #5B4BDB; outline-offset: 2px; }
+    button:focus-visible, input:focus-visible { outline: 2px solid #0F766E; outline-offset: 2px; }
     .icon-btn { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; color: #6A7190; }
     .icon-btn:hover { background: rgba(30,35,64,.07); color: #1E2340; }
 
@@ -312,20 +312,20 @@
     .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; }
     .act { display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 11px 4px 9px;
       border-radius: 11px; background: #fff; border: 1px solid rgba(201,207,220,.8); font-size: 12px; font-weight: 550; }
-    .act:hover { border-color: #5B4BDB; color: #5B4BDB; }
-    .act[aria-pressed="true"] { border-color: #5B4BDB; background: #5B4BDB; color: #fff; }
+    .act:hover { border-color: #0F766E; color: #0F766E; }
+    .act[aria-pressed="true"] { border-color: #0F766E; background: #0F766E; color: #fff; }
     .act svg { width: 20px; height: 20px; }
 
-    .keep { width: 100%; margin-top: 6px; padding: 7px 10px; border-radius: 10px; font-size: 12px; color: #5B4BDB;
-      background: rgba(91,75,219,.08); text-align: left; }
-    .keep:hover { background: rgba(91,75,219,.15); }
+    .keep { width: 100%; margin-top: 6px; padding: 7px 10px; border-radius: 10px; font-size: 12px; color: #0F766E;
+      background: rgba(15, 118, 110,.08); text-align: left; }
+    .keep:hover { background: rgba(15, 118, 110,.15); }
     .sub { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(201,207,220,.9); display: grid; gap: 9px; }
     .sub label { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #1E2340; }
-    .sub input[type=range] { flex: 1; accent-color: #5B4BDB; }
-    .sub input[type=checkbox] { accent-color: #5B4BDB; margin: 0; }
+    .sub input[type=range] { flex: 1; accent-color: #0F766E; }
+    .sub input[type=checkbox] { accent-color: #0F766E; margin: 0; }
     .val { min-width: 34px; text-align: right; color: #6A7190; font-variant-numeric: tabular-nums; }
     .choice { text-align: left; padding: 9px 10px; border-radius: 10px; background: #fff; border: 1px solid rgba(201,207,220,.8); }
-    .choice:hover { border-color: #5B4BDB; }
+    .choice:hover { border-color: #0F766E; }
     .choice b { display: block; font-weight: 600; font-size: 12px; }
     .choice span { color: #6A7190; font-size: 11.5px; }
 
@@ -333,8 +333,8 @@
     .nav button { padding: 3px 6px; border-radius: 6px; }
     .nav button:hover { background: rgba(30,35,64,.07); color: #1E2340; }
 
-    .primary { padding: 8px 14px; border-radius: 10px; background: #5B4BDB; color: #fff; font-weight: 600; }
-    .primary:hover { background: #4A3BC4; }
+    .primary { padding: 8px 14px; border-radius: 10px; background: #0F766E; color: #fff; font-weight: 600; }
+    .primary:hover { background: #115E59; }
     .ghost { padding: 8px 12px; border-radius: 10px; color: #6A7190; }
     .ghost:hover { background: rgba(30,35,64,.07); color: #1E2340; }
 
@@ -345,8 +345,8 @@
 
     .toast { position: fixed; right: 20px; bottom: 20px; pointer-events: auto; padding: 8px 8px 8px 14px;
       border-radius: 12px; display: flex; align-items: center; gap: 12px; font-weight: 550; }
-    .toast button { padding: 5px 10px; border-radius: 8px; color: #5B4BDB; font-weight: 600; }
-    .toast button:hover { background: rgba(91,75,219,.1); }
+    .toast button { padding: 5px 10px; border-radius: 8px; color: #0F766E; font-weight: 600; }
+    .toast button:hover { background: rgba(15, 118, 110,.1); }
 
     @media (prefers-reduced-motion: reduce) { .box { transition: none; } .box.flash { animation: none; } }
   `;
@@ -855,13 +855,17 @@
   let moneyHL = null;
   let skipSel = '';
   let matcher = VeilDetect.compile(); // built from the configuration in startMoney
+  let codeMatcher = matcher;          // the same, for text inside code elements
   const HAS_HL = typeof Highlight === 'function' && typeof CSS !== 'undefined' && !!CSS.highlights;
   const nodeRanges = new Map(); // Text node or Element -> Range[]
   const moneyEls = new Set();   // elements and inputs carrying data-veil-money
   const MATTR = 'data-veil-money';
 
   const { FULL_RE, PART_RE, WORDS: MONEY_WORDS, BARE_NUM_RE, PURE_BARE_RE } = VeilDetect.money;
-  const BASE_SKIP = 'script,style,noscript,textarea,code,pre,kbd,samp,template,title,veil-money,#veil-ui-host,[contenteditable="plaintext-only"]';
+  const BASE_SKIP = 'script,style,noscript,textarea,template,title,veil-money,#veil-ui-host,[contenteditable="plaintext-only"]';
+  // Code often holds numbers and addresses that are not private, but it is
+  // also where pages show API keys, so only the key detector runs there.
+  const CODE_SEL = 'code,pre,kbd,samp';
 
   function normalizeMoney(v) {
     const m = { ...MONEY_DEFAULTS, ...(v || {}) };
@@ -877,6 +881,7 @@
     const ok = money.excludes.filter(validSelector);
     skipSel = [BASE_SKIP, ...ok].join(',');
     matcher = VeilDetect.compile(money);
+    codeMatcher = VeilDetect.compile({ types: money.types.filter((t) => t === 'key') });
   }
 
   function moneyCSS() {
@@ -989,6 +994,8 @@ input[${MATTR}]{${input}}`;
     if (!text || text.length > 5000 || !matcher.test(text)) return;
     const parent = node.parentElement;
     if (!parent || parent.closest(skipSel)) return;
+    const inCode = !!parent.closest(CODE_SEL);
+    if (inCode && !codeMatcher.test(text)) return;
 
     const marked = parent.closest(`[${MATTR}]`);
     if (marked) {
@@ -996,8 +1003,8 @@ input[${MATTR}]{${input}}`;
       unmarkElement(marked);
     }
 
-    const spans = matcher.find(text);
-    if (money.bare && money.types.includes('money')) bareSpans(node, text, spans);
+    const spans = (inCode ? codeMatcher : matcher).find(text);
+    if (!inCode && money.bare && money.types.includes('money')) bareSpans(node, text, spans);
 
     if (spans.length) {
       if (money.style === 'blur') {
@@ -1019,7 +1026,7 @@ input[${MATTR}]{${input}}`;
     }
 
     // Amount split across elements, e.g. <span>$</span><span>1,240</span>
-    if (money.types.includes('money') && PART_RE.test(text.trim())) {
+    if (!inCode && money.types.includes('money') && PART_RE.test(text.trim())) {
       let el = parent;
       for (let i = 0; i < 3 && el && el !== document.body && el !== document.documentElement; i++, el = el.parentElement) {
         const t = norm(el.textContent);

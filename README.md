@@ -66,7 +66,7 @@ Money is the only type selected by default. Veil does not detect names, street a
 - Input fields whose value has a currency, or whose label, name or placeholder says price, amount, total and similar.
 - **Optional:** plain numbers next to words like Total, Balance, Price, Revenue or Fee, including `Balance | 5,000` table cells. This is off by default because it catches more false positives.
 
-Code blocks are skipped, and so are version numbers, years, percentages and phone numbers.
+Veil skips version numbers, years, percentages and phone numbers. It also skips code elements (`code`, `pre`, `kbd` and `samp`) for every type except API keys and tokens, because pages often show keys in code elements.
 
 **Styles:**
 
@@ -137,6 +137,14 @@ tests/e2e/      extension tests in Chromium (Playwright)
 ```
 
 To run the tests, use `npm install`, then `npx playwright install chromium`, then `npm test`.
+
+## Privacy
+
+Veil sends no data anywhere. Read the [privacy policy](PRIVACY.md).
+
+## Publishing
+
+The [Chrome Web Store guide](store/GUIDE.md) describes how to package and submit Veil.
 
 ## Contributing
 

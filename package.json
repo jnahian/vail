@@ -7,7 +7,9 @@
   "scripts": {
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "node --test \"tests/unit/**/*.test.js\"",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "package": "node scripts/package.js",
+    "store:assets": "node store/generate-assets.js"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

@@ -59,3 +59,10 @@ test('pausing Veil uncovers the data, and resuming covers it again', async ({ pa
   await store({ paused: false });
   await expect.poll(() => highlighted(page)).toEqual(['$1,240.50']);
 });
+
+test('API keys inside code elements are covered, but other types in code are not', async ({ page, store }) => {
+  await store(dataConfig({ types: ['money', 'key'] }));
+  await page.goto(`http://${HOST}/data.html`);
+
+  await expect.poll(() => highlighted(page)).toEqual(['$1,240.50', 'sk_live_abc123def456']);
+});
