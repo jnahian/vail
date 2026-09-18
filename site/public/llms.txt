@@ -1,0 +1,19 @@
+# Veil
+
+> Veil is a free, open-source Chrome extension. It hides money, emails, phone numbers, card numbers, IBANs, API keys and IP addresses on any web page before you share your screen. It can also hide, blur or rewrite any element that you pick on a page. Veil keeps your rules on your device and makes no network requests.
+
+Veil adds a mask, a blur or a hidden style to each match that it finds on a page. The page itself does not change. You can add your own words or regular expressions as extra types. Rules for picked elements apply to one page or to a whole site, and they come back on every visit. Keyboard shortcuts: Alt+Shift+V picks an element, Alt+Shift+X pauses or resumes all changes, and Alt+Shift+M shows hidden data for a moment.
+
+The Chrome Web Store listing is in review. Until it is live, you install Veil from the release zip with "Load unpacked" at chrome://extensions.
+
+## Pages
+
+- [Home page](https://vail.jnahian.me/): Features, a live demo and install steps
+- [Privacy policy](https://vail.jnahian.me/privacy/): What Veil stores and what it does not send
+- [Changelog](https://vail.jnahian.me/changelog/): Changes in each version
+
+## Source and downloads
+
+- [GitHub repository](https://github.com/jnahian/vail): Source code, MIT License
+- [Latest release](https://github.com/jnahian/vail/releases/latest): The zip to install
+- [Demo video](https://youtu.be/-tR-An6twFQ): Veil in use on a dashboard

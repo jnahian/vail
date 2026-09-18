@@ -63,6 +63,25 @@ const shortcuts = [
   { keys: 'Alt+Shift+M', action: 'Show hidden data for a moment' },
 ];
 
+const description =
+  'A Chrome extension that masks money, emails, phone numbers, API keys and other sensitive data, and hides, blurs or rewrites any element on a page.';
+
+// Structured data that tells search engines and AI tools what Veil is.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Veil',
+  alternateName: 'Veil: Hide, Blur & Rewrite',
+  description,
+  url: Astro.site,
+  applicationCategory: 'BrowserApplication',
+  operatingSystem: 'Chrome',
+  license: 'https://opensource.org/licenses/MIT',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  downloadUrl: DOWNLOAD,
+  sameAs: [REPO],
+};
+
 const steps = [
   'Download the zip from the latest release, and unzip it into a folder that you keep.',
   'Open chrome://extensions and turn on Developer mode.',
@@ -78,8 +97,9 @@ const primary =
 
 <Layout
   title="Veil: hide private data before you share your screen"
-  description="A Chrome extension that masks money, emails, phone numbers, API keys and other sensitive data, and hides, blurs or rewrites any element on a page."
+  {description}
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   <header class="sticky top-0 z-10 border-b border-line bg-paper/85 backdrop-blur">
     <nav class="mx-auto flex max-w-7xl items-center gap-8 px-4 py-3 sm:px-6 lg:px-8">
       <a href={`${base}/`} class="flex min-h-11 items-center gap-2.5 text-lg font-bold">

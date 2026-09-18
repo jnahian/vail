@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 import { satteri } from '@astrojs/markdown-satteri';
 
 // Opens GitHub links in the Markdown pages (privacy policy, changelog) in a new tab.
@@ -31,6 +32,7 @@ const hideUnreleased = {
 // Served by GitHub Pages at the custom domain https://vail.jnahian.me/
 export default defineConfig({
   site: 'https://vail.jnahian.me',
+  integrations: [sitemap()],
   markdown: { processor: satteri({ hastPlugins: [githubLinksInNewTab, hideUnreleased] }) },
   vite: {
     plugins: [tailwindcss()],
