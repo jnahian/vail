@@ -6,6 +6,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-09-19
+
+### Removed
+
+- The `activeTab` permission. The host permissions already give Veil access to every http and https page, so `activeTab` added nothing.
+
 ## [1.0.2] - 2026-09-17
 
 ### Changed
@@ -42,7 +48,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Pausing Veil now also stops sensitive data hiding.
 - After a Veil reload, popup controls now keep working in tabs that were already open.
 
-[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/jnahian/vail/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/jnahian/vail/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/jnahian/vail/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/jnahian/vail/releases/tag/v1.0.0
