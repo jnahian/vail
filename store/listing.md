@@ -23,7 +23,7 @@ Turn it on once for a site, and Veil covers every match on its pages, including 
 • Phone numbers, such as +880 1712-345678 and (555) 123-4567
 • Card numbers (checked with the Luhn checksum)
 • IBANs (checked with the IBAN checksum)
-• API keys and tokens, such as Stripe, GitHub, Shopify, AWS, Slack and JWT
+• API keys and access tokens
 • IPv4 addresses
 • Your own words, or regular expressions
 
@@ -83,7 +83,6 @@ Veil hides, blurs or replaces content on the web pages that a user visits, so th
 |---|---|
 | `storage` | Saves the user's rules and sensitive data configuration on the device, so that Veil can apply them again on every visit. |
 | `scripting` | After an install or update, starts Veil in the tabs that are already open. Without this, those tabs need a reload before Veil works. |
-| `activeTab` | After a click on the toolbar button, a keyboard shortcut, or the context menu, lets Veil run on the current tab. |
 | `contextMenus` | Adds the "Veil this element" item to the right-click menu. |
 | Host permissions (`http://*/*`, `https://*/*`) | The user can create rules and turn on sensitive data hiding for any site. Veil must apply them while each page loads, before the content shows, so the content script runs on all http and https pages. |
 
