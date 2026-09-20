@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-09-20
+
 ### Changed
 
 - The Blur style for sensitive data no longer shows the data on hover by default. Turn on **Show hidden data clearly while I hover over it** in the popup to get that behavior back.
@@ -52,7 +54,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Pausing Veil now also stops sensitive data hiding.
 - After a Veil reload, popup controls now keep working in tabs that were already open.
 
-[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/jnahian/vail/compare/v1.0.4...HEAD
+[1.0.4]: https://github.com/jnahian/vail/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/jnahian/vail/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/jnahian/vail/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/jnahian/vail/compare/v1.0.0...v1.0.1
