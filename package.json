@@ -1,6 +1,6 @@
 {
   "name": "veil",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "Development tooling for the Veil Chrome extension. The extension itself has no build step.",
   "license": "MIT",
