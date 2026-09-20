@@ -4,6 +4,10 @@ Website: <https://vail.jnahian.me/>
 
 Demo: <https://youtu.be/-tR-An6twFQ>
 
+[![Veil covering the amounts, emails and keys on a billing page, with the extension popup open](site/public/veil-teaser.jpg)](https://vail.jnahian.me/#demo)
+
+Twenty seconds of Veil covering a billing page, with sound: <https://vail.jnahian.me/#demo>
+
 A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 
 ## Install
