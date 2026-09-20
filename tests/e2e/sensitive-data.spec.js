@@ -11,6 +11,29 @@ test('blur style wraps and blurs each amount', async ({ page, store }) => {
   await expect(blurred(page)).toHaveCSS('filter', 'blur(6px)');
 });
 
+test('blur stays blurred on hover unless hover reveal is on', async ({ page, store }) => {
+  await store(dataConfig({ style: 'blur' }));
+  await page.goto(`http://${HOST}/data.html`);
+  await expect(blurred(page)).toHaveCSS('filter', 'blur(6px)');
+
+  await blurred(page).hover();
+  await page.waitForTimeout(400); // longer than the filter transition
+
+  await expect(blurred(page)).toHaveCSS('filter', 'blur(6px)');
+});
+
+test('turning hover reveal on clears the blur on hover, without a reload', async ({ page, store }) => {
+  await store(dataConfig({ style: 'blur' }));
+  await page.goto(`http://${HOST}/data.html`);
+  await expect(blurred(page)).toHaveCSS('filter', 'blur(6px)');
+
+  await store(dataConfig({ style: 'blur', hoverReveal: true }));
+  await expect(blurred(page)).toHaveCount(1); // the rescan rewraps the amount
+  await blurred(page).hover();
+
+  await expect(blurred(page)).toHaveCSS('filter', 'none');
+});
+
 // Text covered by the Mask and Hide styles, which use the CSS Highlight API.
 const highlighted = (page) =>
   page.evaluate(() => [...(CSS.highlights.get('veil-money') ?? [])].map((r) => r.toString()));

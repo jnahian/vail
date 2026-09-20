@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Changed
+
+- The Blur style for sensitive data no longer shows the data on hover by default. Turn on **Show hidden data clearly while I hover over it** in the popup to get that behavior back.
+
 ## [1.0.3] - 2026-09-19
 
 ### Removed
