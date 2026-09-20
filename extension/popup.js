@@ -16,7 +16,7 @@ let pageKey;
 let rules = [];
 let money = null; // sensitive data configuration for this site
 
-const MONEY_DEFAULTS = { enabled: false, style: 'mask', bare: false, blur: 6, excludes: [], types: ['money'], custom: [] };
+const MONEY_DEFAULTS = { enabled: false, style: 'mask', bare: false, blur: 6, hoverReveal: false, excludes: [], types: ['money'], custom: [] };
 const TYPE_NAMES = {
   money: 'Money', email: 'Emails', phone: 'Phone numbers', card: 'Card numbers',
   iban: 'IBANs', key: 'API keys and tokens', ip: 'IP addresses',
@@ -323,7 +323,7 @@ async function init() {
 
 const STYLE_NOTES = {
   mask: 'Covers matches with a solid bar. Safe on every site because the page itself is not changed.',
-  blur: 'Blurs matches and shows them clearly on hover. This edits the page, which can occasionally upset sites built with React or Vue.',
+  blur: 'Blurs matches. This edits the page, which can occasionally upset sites built with React or Vue.',
   hide: 'Makes matches invisible but keeps their space. Safe on every site.',
 };
 
@@ -338,6 +338,8 @@ async function setupMoney(cmds) {
     document.querySelectorAll('[data-style]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.style === money.style)));
     $('#styleNote').textContent = STYLE_NOTES[money.style] || '';
     document.querySelectorAll('[data-type]').forEach((c) => { c.checked = money.types.includes(c.dataset.type); });
+    $('#hoverRow').hidden = money.style !== 'blur';
+    $('#moneyHover').checked = !!money.hoverReveal;
     $('#bareRow').hidden = !money.types.includes('money');
     $('#moneyBare').checked = !!money.bare;
     if (document.activeElement !== $('#custom')) $('#custom').value = money.custom.join('\n');
@@ -371,6 +373,7 @@ async function setupMoney(cmds) {
   document.querySelectorAll('[data-type]').forEach((c) => {
     c.onchange = () => save({ types: Object.keys(TYPE_NAMES).filter((t) => $(`[data-type="${t}"]`).checked) });
   });
+  $('#moneyHover').onchange = () => save({ hoverReveal: $('#moneyHover').checked });
   $('#moneyBare').onchange = () => save({ bare: $('#moneyBare').checked });
   $('#custom').onchange = () => save({ custom: $('#custom').value.split('\n').map((x) => x.trim()).filter(Boolean) });
   $('#exclReset').onclick = () => save({ excludes: [] });

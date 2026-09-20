@@ -847,7 +847,7 @@
   // on the page and mask, blur or hide them. Stored under money:<host>.
   // ---------------------------------------------------------------------------
   const MKEY = `money:${HOST}`;
-  const MONEY_DEFAULTS = { enabled: false, style: 'mask', bare: false, blur: 6, excludes: [], types: ['money'], custom: [] };
+  const MONEY_DEFAULTS = { enabled: false, style: 'mask', bare: false, blur: 6, hoverReveal: false, excludes: [], types: ['money'], custom: [] };
   let money = { ...MONEY_DEFAULTS };
   let moneyRevealed = false;
   let moneyStyle = null;
@@ -888,9 +888,10 @@
     if (!money.enabled || moneyRevealed) return '';
     if (money.style === 'blur') {
       const b = Number(money.blur) || 6;
+      const hover = money.hoverReveal ? `
+veil-money:hover,[${MATTR}]:hover{filter:none!important}` : '';
       return `veil-money,[${MATTR}]{filter:blur(${b}px)!important;transition:filter .15s ease!important}
-veil-money{display:inline-block!important}
-veil-money:hover,[${MATTR}]:hover{filter:none!important}`;
+veil-money{display:inline-block!important}${hover}`;
     }
     const bg = money.style === 'mask' ? 'rgba(106,113,144,.6)' : 'transparent';
     const input = money.style === 'mask' ? '-webkit-text-security:disc!important' : 'color:transparent!important';

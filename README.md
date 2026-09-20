@@ -83,10 +83,11 @@ Veil skips version numbers, years, percentages and phone numbers. It also skips 
 |---|---|---|
 | Mask (default) | Solid grey bar over the match | No. Uses Chrome's CSS Highlight API, so it's safe on React and Vue sites |
 | Hide | Match is invisible, space kept | No |
-| Blur | Blurred, clear on hover | Yes. Each match is wrapped in a `<veil-money>` tag, which can occasionally upset framework-rendered pages |
+| Blur | Blurred | Yes. Each match is wrapped in a `<veil-money>` tag, which can occasionally upset framework-rendered pages |
 
 **Controls:**
 - **Alt+Shift+M** shows the hidden data on the current tab. Press it again to hide it.
+- The Blur style can also clear on hover. That is off by default. Turn on **Show hidden data clearly while I hover over it** under the style buttons.
 - If Veil covers something that is not sensitive, pick it (or right-click it and choose **Veil this element**), then click **Keep this visible when hiding sensitive data**. The popup shows how many elements are kept visible and lets you reset them.
 
 **Won't be caught:**
@@ -95,7 +96,7 @@ Veil skips version numbers, years, percentages and phone numbers. It also skips 
 - Text styled with gradient fills, which the mask can't cover.
 - Numbers with no currency, when the plain-number setting is off.
 - Data already on screen before the first scan. The scan starts early, but a brief flash is possible on slow pages.
-- Mask and Hide have no hover reveal. Use the shortcut instead.
+- Hover reveal works with the Blur style only, and only when you turn it on. With Mask and Hide, use the shortcut instead.
 
 ## Popup
 
