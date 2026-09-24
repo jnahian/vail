@@ -4,7 +4,7 @@
 
 Veil adds a mask, a blur or a hidden style to each match that it finds on a page. The page itself does not change. You can add your own words or regular expressions as extra types. Rules for picked elements apply to one page or to a whole site, and they come back on every visit. Keyboard shortcuts: Alt+Shift+V picks an element, Alt+Shift+X pauses or resumes all changes, and Alt+Shift+M shows hidden data for a moment.
 
-The Chrome Web Store listing is in review. Until it is live, you install Veil from the release zip with "Load unpacked" at chrome://extensions.
+You install Veil from the Chrome Web Store.
 
 ## Pages
 
@@ -15,5 +15,5 @@ The Chrome Web Store listing is in review. Until it is live, you install Veil fr
 ## Source and downloads
 
 - [GitHub repository](https://github.com/jnahian/vail): Source code, MIT License
-- [Latest release](https://github.com/jnahian/vail/releases/latest): The zip to install
+- [Chrome Web Store](https://chromewebstore.google.com/detail/veil-hide-blur-rewrite/mmgidjpigbhdkdnmjhcbjhlbfhecddkc): Install Veil
 - [Demo video](https://youtu.be/-tR-An6twFQ): Veil in use on a dashboard

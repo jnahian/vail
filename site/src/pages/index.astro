@@ -6,7 +6,7 @@ import shotPanel from '../../../store/assets/screenshot-4-panel.png';
 import shotRules from '../../../store/assets/screenshot-5-rules.png';
 
 const REPO = 'https://github.com/jnahian/vail';
-const DOWNLOAD = `${REPO}/releases/latest`;
+const DOWNLOAD = 'https://chromewebstore.google.com/detail/veil-hide-blur-rewrite/mmgidjpigbhdkdnmjhcbjhlbfhecddkc';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const looks = [
@@ -83,10 +83,9 @@ const jsonLd = {
 };
 
 const steps = [
-  'Download the zip from the latest release, and unzip it into a folder that you keep.',
-  'Open chrome://extensions and turn on Developer mode.',
-  'Click Load unpacked, and select the folder that contains manifest.json.',
-  'Pin Veil from the puzzle-piece menu, open a site, and click Pick an element.',
+  'Open Veil on the Chrome Web Store and click Add to Chrome.',
+  'Pin Veil from the puzzle-piece menu.',
+  'Open a site, click the Veil icon, and click Pick an element.',
 ];
 
 const h2 = 'text-4xl font-extrabold leading-[1.02] tracking-[-0.03em] text-balance sm:text-5xl';
@@ -115,7 +114,7 @@ const primary =
         <a href={REPO} target="_blank" rel="noopener" class="hover:text-ink">GitHub</a>
       </div>
       <a href={DOWNLOAD} target="_blank" rel="noopener" class:list={[primary, 'ml-auto px-4 py-2 text-[15px] md:ml-0']}>
-        <span class="sm:hidden">Download</span><span class="hidden sm:inline">Download for Chrome</span>
+        Add to Chrome
       </a>
     </nav>
   </header>
@@ -134,7 +133,7 @@ const primary =
             else sees them. Try it on the page below.
           </p>
           <div class="flex flex-col gap-3 sm:flex-row">
-            <a href={DOWNLOAD} target="_blank" rel="noopener" class={primary}>Download for Chrome</a>
+            <a href={DOWNLOAD} target="_blank" rel="noopener" class={primary}>Add to Chrome</a>
             <a
               href={REPO} target="_blank" rel="noopener"
               class="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#c9cfdc] px-5 py-3 font-semibold transition-colors hover:border-ink motion-reduce:transition-none"
@@ -398,7 +397,7 @@ const primary =
 
     <section id="install" class="mx-auto flex max-w-7xl scroll-mt-20 flex-col gap-10 px-4 py-20 sm:px-6 lg:gap-12 lg:px-8 lg:py-28">
       <h2 class={h2}>Install Veil</h2>
-      <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <ol class="grid gap-6 sm:grid-cols-3">
         {
           steps.map((step, i) => (
             <li class="flex gap-4 border-t-2 border-ink pt-4 sm:flex-col sm:gap-3.5 sm:pt-5">
@@ -406,11 +405,11 @@ const primary =
               <p class="leading-relaxed">
                 {i === 0 ? (
                   <>
-                    Download the zip from the{' '}
+                    Open Veil on the{' '}
                     <a href={DOWNLOAD} target="_blank" rel="noopener" class="font-semibold text-brand underline hover:text-brand-deep">
-                      latest release
-                    </a>
-                    , and unzip it into a folder that you keep.
+                      Chrome Web Store
+                    </a>{' '}
+                    and click Add to Chrome.
                   </>
                 ) : (
                   step
@@ -421,9 +420,9 @@ const primary =
         }
       </ol>
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
-        <a href={DOWNLOAD} target="_blank" rel="noopener" class={primary}>Download for Chrome</a>
+        <a href={DOWNLOAD} target="_blank" rel="noopener" class={primary}>Add to Chrome</a>
         <span class="text-[15px] text-slate-ink">
-          To update, unzip the new release into the same folder and click reload on the Veil card.
+          Chrome keeps Veil up to date on its own.
         </span>
       </div>
     </section>
