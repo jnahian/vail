@@ -12,15 +12,7 @@ A Chrome extension for picking any element on a web page and then hiding it, blu
 
 ## Install
 
-The demo video says that Veil is free on the Chrome Web Store. The listing is still in review, so it has no public page yet. Until it is live, install Veil from the release zip:
-
-1. Download `veil-<version>.zip` from the [latest release](https://github.com/jnahian/vail/releases/latest).
-2. Unzip it into a folder that you keep, for example `veil`. Chrome loads Veil from this folder, so do not delete or move it.
-3. Open `chrome://extensions` and turn on **Developer mode** (top right).
-4. Click **Load unpacked**, then select the folder that contains `manifest.json`.
-5. Pin Veil from the puzzle-piece menu.
-
-To update Veil, unzip the new release into the same folder, replacing the old files. Then click the reload icon on the Veil card at `chrome://extensions`.
+Install Veil from the [Chrome Web Store](https://chromewebstore.google.com/detail/veil-hide-blur-rewrite/mmgidjpigbhdkdnmjhcbjhlbfhecddkc), then pin it from the puzzle-piece menu.
 
 When Veil is installed, updated or reloaded, it starts again in the tabs that are already open. If a tab does not respond, reload it.
 
