@@ -2,11 +2,9 @@
 
 Website: <https://vail.jnahian.me/>
 
-Demo: <https://youtu.be/-tR-An6twFQ>
-
 [![Veil covering the amounts, emails and keys on a billing page, with the extension popup open](site/public/veil-teaser.jpg)](https://vail.jnahian.me/#demo)
 
-Twenty seconds of Veil covering a billing page, with sound: <https://vail.jnahian.me/#demo>
+[20 second teaser, with sound](https://vail.jnahian.me/#demo) · [Full walkthrough on YouTube](https://youtu.be/-tR-An6twFQ)
 
 A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 
@@ -139,9 +137,11 @@ extension/        the extension, loaded unpacked and zipped for the store
   content.js      picker, panel, editor, rule engine, sensitive data hiding
   popup.html/css/js  rule manager
   icons/          16, 32, 48, 128 px
-tests/unit/     detection tests (node:test)
-tests/e2e/      extension tests in Chromium (Playwright)
-site/           landing page (Astro and Tailwind CSS)
+tests/unit/       detection tests (node:test)
+tests/e2e/        extension tests in Chromium (Playwright)
+scripts/          package.js builds the store zip
+store/            Web Store listing, screenshots and submission guide
+site/             landing page (Astro and Tailwind CSS)
 ```
 
 To run the tests, use `npm install`, then `npx playwright install chromium`, then `npm test`.
