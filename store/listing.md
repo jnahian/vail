@@ -50,8 +50,8 @@ Veil makes no network requests, and has no analytics and no remote code. Your ru
 LIMITS
 Veil hides data visually only. The page's own scripts can still read it. Veil does not work inside iframes, canvas charts or images.
 
-Website: https://vail.jnahian.me
-Source code (MIT License): https://github.com/jnahian/vail
+Website: https://veil-ce.jnahian.me
+Source code (MIT License): https://github.com/jnahian/veil-chrome-ext
 ```
 
 ### Other fields
@@ -65,8 +65,8 @@ Source code (MIT License): https://github.com/jnahian/vail
 | Small promo tile | `assets/promo-small-440x280.png` |
 | Marquee promo tile | `assets/promo-marquee-1400x560.png` |
 | Official URL | None |
-| Homepage URL | `https://vail.jnahian.me/` |
-| Support URL | `https://github.com/jnahian/vail/issues` |
+| Homepage URL | `https://veil-ce.jnahian.me/` |
+| Support URL | `https://github.com/jnahian/veil-chrome-ext/issues` |
 | Mature content | Off |
 
 ## Privacy practices tab
@@ -107,5 +107,5 @@ Select all three certifications:
 ### Privacy policy URL
 
 ```text
-https://vail.jnahian.me/privacy/
+https://veil-ce.jnahian.me/privacy/
 ```

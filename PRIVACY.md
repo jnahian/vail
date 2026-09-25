@@ -2,7 +2,7 @@
 
 Last updated: 2026-09-17
 
-This policy applies to Veil, the Chrome extension published from the [jnahian/vail](https://github.com/jnahian/vail) repository.
+This policy applies to Veil, the Chrome extension published from the [jnahian/veil-chrome-ext](https://github.com/jnahian/veil-chrome-ext) repository.
 
 ## Summary
 
@@ -46,4 +46,4 @@ If this policy changes, the new version is published at this address, with a new
 
 ## Contact
 
-For questions about this policy, open an issue at <https://github.com/jnahian/vail/issues>.
+For questions about this policy, open an issue at <https://github.com/jnahian/veil-chrome-ext/issues>.

@@ -14,7 +14,7 @@ Do not open a public issue for a security problem.
 
 Report it privately through GitHub:
 
-1. Go to the [Security tab](https://github.com/jnahian/vail/security) of this repository.
+1. Go to the [Security tab](https://github.com/jnahian/veil-chrome-ext/security) of this repository.
 2. Click **Report a vulnerability**.
 3. Describe the problem, the affected version, and the steps to reproduce it.
 

@@ -90,7 +90,7 @@ Copy each value from [listing.md](listing.md#privacy-practices-tab):
 5. Paste the privacy policy URL.
 6. Click **Save draft**.
 
-The privacy policy URL points to the site page at `https://vail.jnahian.me/privacy/`, which the site builds from `PRIVACY.md`. The page updates when the site deploys from `main`. Before you submit, open the URL in a browser, and make sure that it shows the current policy.
+The privacy policy URL points to the site page at `https://veil-ce.jnahian.me/privacy/`, which the site builds from `PRIVACY.md`. The page updates when the site deploys from `main`. Before you submit, open the URL in a browser, and make sure that it shows the current policy.
 
 ## 6. Fill in the Distribution tab
 

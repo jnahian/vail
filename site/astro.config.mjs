@@ -29,9 +29,9 @@ const hideUnreleased = {
   },
 };
 
-// Served by GitHub Pages at the custom domain https://vail.jnahian.me/
+// Served by GitHub Pages at the custom domain https://veil-ce.jnahian.me/
 export default defineConfig({
-  site: 'https://vail.jnahian.me',
+  site: 'https://veil-ce.jnahian.me',
   integrations: [sitemap()],
   markdown: { processor: satteri({ hastPlugins: [githubLinksInNewTab, hideUnreleased] }) },
   vite: {

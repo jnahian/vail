@@ -8,12 +8,12 @@ You install Veil from the Chrome Web Store.
 
 ## Pages
 
-- [Home page](https://vail.jnahian.me/): Features, a live demo and install steps
-- [Privacy policy](https://vail.jnahian.me/privacy/): What Veil stores and what it does not send
-- [Changelog](https://vail.jnahian.me/changelog/): Changes in each version
+- [Home page](https://veil-ce.jnahian.me/): Features, a live demo and install steps
+- [Privacy policy](https://veil-ce.jnahian.me/privacy/): What Veil stores and what it does not send
+- [Changelog](https://veil-ce.jnahian.me/changelog/): Changes in each version
 
 ## Source and downloads
 
-- [GitHub repository](https://github.com/jnahian/vail): Source code, MIT License
+- [GitHub repository](https://github.com/jnahian/veil-chrome-ext): Source code, MIT License
 - [Chrome Web Store](https://chromewebstore.google.com/detail/veil-hide-blur-rewrite/mmgidjpigbhdkdnmjhcbjhlbfhecddkc): Install Veil
 - [Demo video](https://youtu.be/-tR-An6twFQ): Veil in use on a dashboard

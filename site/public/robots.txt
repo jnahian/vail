@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vail.jnahian.me/sitemap-index.xml
+Sitemap: https://veil-ce.jnahian.me/sitemap-index.xml
