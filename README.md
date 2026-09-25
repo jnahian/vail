@@ -121,7 +121,7 @@ You can change shortcuts at `chrome://extensions/shortcuts`.
 
 - **Rules can break when a site changes.** A redesign can make a selector stop matching. The text fallback recovers many of these cases, but not elements without text, such as images.
 - **Lists that reorder can misfire.** A selector like "the 2nd card" may land on a different item when the list order changes.
-- **Replaced text is visual only.** The original can still reach the site's own scripts, and it can reappear briefly before Veil re-applies. Don't rely on Veil to protect sensitive data during a screen share.
+- **Replaced text is visual only.** The original can still reach the site's own scripts, and it can reappear briefly before Veil re-applies. Before you share your screen, open the pages you plan to show so Veil has already covered them.
 - **Replacing text on framework-rendered elements can occasionally break that part of the page**, because the framework expects the nodes it created. If this happens, delete the rule, or choose a smaller element that contains only text.
 - **Iframes are not supported.** Veil works on the top-level page only.
 - **Some pages are off limits.** Chrome blocks extensions on `chrome://` pages and the Web Store.
