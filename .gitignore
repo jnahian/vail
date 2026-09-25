@@ -3,5 +3,6 @@ test-results/
 playwright-report/
 dist/
 .claude/
-brag-output/
+brag-output*/
+store/demo/
 .DS_Store
