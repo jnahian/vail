@@ -16,4 +16,5 @@ You install Veil from the Chrome Web Store.
 
 - [GitHub repository](https://github.com/jnahian/veil-chrome-ext): Source code, MIT License
 - [Chrome Web Store](https://chromewebstore.google.com/detail/veil-hide-blur-rewrite/mmgidjpigbhdkdnmjhcbjhlbfhecddkc): Install Veil
+- [Intro video](https://youtu.be/MSykGjktihY): 23 second narrated overview
 - [Demo video](https://youtu.be/-tR-An6twFQ): Veil in use on a dashboard

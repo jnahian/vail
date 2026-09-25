@@ -2,9 +2,9 @@
 
 Website: <https://veil-ce.jnahian.me/>
 
-[![The Veil logo above the line "Share your screen, not your numbers."](site/public/veil-intro.jpg)](https://veil-ce.jnahian.me/#demo)
+[![The Veil logo above the line "Share your screen, not your numbers."](site/public/veil-intro.jpg)](https://youtu.be/MSykGjktihY)
 
-[23 second intro, with sound](https://veil-ce.jnahian.me/#demo) · [Full walkthrough on YouTube](https://youtu.be/-tR-An6twFQ)
+[23 second intro, with sound](https://youtu.be/MSykGjktihY) · [Full walkthrough on YouTube](https://youtu.be/-tR-An6twFQ)
 
 A Chrome extension for picking any element on a web page and then hiding it, blurring it, or replacing its text. It can also hide money, emails, phone numbers and other sensitive data across a whole site. Your changes are saved and come back every time you visit.
 
